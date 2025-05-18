@@ -30,7 +30,7 @@ const ServerStatus = ({className })  => {
         const baseURL =
         window.location.hostname === 'localhost'
           ? 'http://localhost:4000'
-          : 'https://emei-backend-production.up.railway.app/';
+          : 'https://emei-backend-production.up.railway.app';
       
       const response = await axios.get(`${baseURL}/api/health`, {
         withCredentials: true,
