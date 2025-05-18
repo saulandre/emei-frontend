@@ -79,14 +79,14 @@ const BackButton = styled(Link)`
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   color: #fff;
-  background: linear-gradient(135deg, #22223b, #4a4e69);
+  background: linear-gradient(135deg, #d64042, #d64042);
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: linear-gradient(135deg, #4a4e69, #22223b);
+    background: linear-gradient(135deg,rgb(114, 25, 25), rgb(114, 25, 25));
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
@@ -95,7 +95,7 @@ const BackButton = styled(Link)`
 // Ícone animado
 const FloatingIcon = styled.div`
   animation: float 3s ease-in-out infinite;
-
+color:#d64042;
   @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
