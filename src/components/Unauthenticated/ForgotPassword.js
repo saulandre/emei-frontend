@@ -61,7 +61,7 @@ const StyledInput = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background-color: #1b263b;
+  background-color: #d64042;
   color: #fff;
   padding: 10px 20px;
   border: none;

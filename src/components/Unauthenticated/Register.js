@@ -139,7 +139,7 @@ height: 49px;
   padding: 1rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #22223b 0%, #22223b 100%);
+  background: linear-gradient(135deg, #d64042 0%, #d64042 100%);
   margin-top: 1.5rem;
   &:hover {
     transform: translateY(-2px);
