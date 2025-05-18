@@ -82,9 +82,9 @@ const Container = styled.div`
 const EmptyStateMessage = styled.div`
   text-align: center;
   padding: 2rem;
-  background: ${({ theme }) => theme.cardBackground};
+  background: #d64042;
   border-radius: 0.5rem;
-  color: ${({ theme }) => theme.textColor};
+  color: #fff;
   font-size: 1.1rem;
   font-weight: 400;
   margin-top: 2rem;
@@ -110,8 +110,8 @@ const FormCard = styled.div`
   background: ${({ theme }) => theme.cardBackground};
   border-radius: 5px;
   padding: 1.5rem;
-  box-shadow: ${({ theme }) => theme.shadow};
-  position: relative;
+/*   box-shadow: ${({ theme }) => theme.shadow};
+ */  position: relative;
   width: 100%;
   max-width: calc(100vw - 2rem);
   margin: 0 auto;
