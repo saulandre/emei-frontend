@@ -193,7 +193,7 @@ export const themes = {
     background: 'linear-gradient(135deg, #e7ecef, #e7ecef, #e7ecef)',
     cardBackground: '#e7ecef',
     textColor: '#22223b',
-    buttonBackground: 'linear-gradient(135deg, #6599FF, #6599FF)',
+    buttonBackground: 'linear-gradient(135deg, #d64042, #d64042)',
     tableHeaderBackground: '#003049',
     tableHeaderColor: 'white',
     tableRowEvenBackground: '#f8f9fa',
@@ -244,7 +244,7 @@ flex-wrap: wrap;
 const SubmitButton = styled.button`
   width: 100%;
   padding: 1.2rem;
-  background: #0d1b2a;
+  background: #d64042;
   color: #fff;
   border: none;
   border-radius: 0.8rem;
