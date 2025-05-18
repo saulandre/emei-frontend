@@ -6,10 +6,10 @@ import { FiUser, FiLogOut, FiMoon,FiDownload, FiMenu, FiPlus, FiUpload } from "r
 // Temas otimizados
 export const themes = {
   professional: {
-    background: 'linear-gradient(135deg, #6599FF, #6599FF, #6599FF)',
+    background: 'linear-gradient(135deg, #d64042, #d64042, #d64042)',
     cardBackground: '#e7ecef',
     textColor: '#22223b',
-    buttonBackground: 'linear-gradient(135deg, #6599FF, #6599FF)',
+    buttonBackground: 'linear-gradient(135deg, #d64042, #d64042)',
     tableHeaderBackground: '#003049',
     tableHeaderColor: 'white',
     tableRowEvenBackground: '#f8f9fa',
@@ -295,7 +295,7 @@ const HeaderMain = ({className }) => {
       <Container>
         <Header className={className}>
           <Wrapper><ImagemResponsiva src="/favicon.png" alt="Banner do evento" />
-          <Title>35ª CONMEL 2025</Title>
+          <Title>39º EMEI 2025</Title>
     </Wrapper>          <Nav>
 
 
