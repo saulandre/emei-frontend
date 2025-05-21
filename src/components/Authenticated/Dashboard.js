@@ -36,7 +36,7 @@ const themes = {
     background: 'linear-gradient(135deg, #e7ecef, #e7ecef, #e7ecef)',
     cardBackground: '#e7ecef',
     textColor: '#22223b',
-    buttonBackground: 'linear-gradient(135deg, #e7ecef, #e7ecef)',
+    buttonBackground: 'linear-gradient(135deg, #d64042, #d64042)',
     tableHeaderBackground: '#d64042',
     tableHeaderColor: 'white',
     tableRowEvenBackground: '#f8f9fa',
