@@ -215,7 +215,7 @@ const Input = styled.input`
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   background: #f9f9f9;
-  color: #22223b;
+  color: #d64042;
   font-family: 'Poppins', sans-serif;
   transition: all 0.3s ease;
 
