@@ -426,7 +426,7 @@ const LinkText = styled.span`
   cursor: pointer;
 `;
 
-  /* 
+
 
 const PlanoGeralModal = ({ isOpen, onClose }) => {
   const [visible, setVisible] = useState(isOpen);
@@ -557,7 +557,7 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
       )}
     </ModalOverlay>
   );
-}; */
+};
 
 const Formulario = () => {
 
@@ -1345,12 +1345,12 @@ mental, emocional?"
 
         
             </FormGrid>
-   {/*          <CheckboxContainer>
+        <CheckboxContainer>
         <CheckboxInput type="checkbox" required />
         <CheckboxLabel>
-          Declaro que li e aceito as orientações contidas no <LinkText onClick={() => setModalOpen(true)}>plano geral</LinkText> da 35ª CONMEL. *
+          Declaro que li e aceito as orientações contidas no <LinkText onClick={() => setModalOpen(true)}>plano geral</LinkText> da 39º EMEI. *
         </CheckboxLabel>
-      </CheckboxContainer> */}
+      </CheckboxContainer> 
 
 {/*       <PlanoGeralModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> */}
             <SubmitButton type="submit" disabled={isSubmitting}>
