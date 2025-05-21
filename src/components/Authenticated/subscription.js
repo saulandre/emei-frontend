@@ -1003,7 +1003,7 @@ const Formulario = () => {
                     checked={formData.camisa}
                     onChange={handleChange}
                   />
-                  <CheckboxLabel>Sim, desejo comprar a camisa - R$ 25,00</CheckboxLabel>
+                  <CheckboxLabel>Sim, desejo comprar a camisa - R$ 30,00</CheckboxLabel>
                 </CheckboxContainer>
               </InputGroup> 
 
@@ -1057,7 +1057,7 @@ const Formulario = () => {
                     <option value="Divulgação">Divulgação</option>
                     <option value="Estudos Doutrinários">Estudos Doutrinários</option>
                     
-                    <option value="Núcleo Gestor">Núcleo Gestor</option>
+                    <option value="Coordenação Geral">Coordenação Geral</option>
                   
                     
                     <option value="Recepção">Recepção</option>
@@ -1178,7 +1178,7 @@ const Formulario = () => {
         </InputGroup>
       )}
               <InputGroup>
-  <InputLabel><FiClock /> É sua primeira CONMEL? </InputLabel>
+  <InputLabel><FiClock /> É sua primeira EMEI? </InputLabel>
   <CheckboxContainer>
     <CheckboxInput
       type="checkbox"
@@ -1186,7 +1186,7 @@ const Formulario = () => {
       checked={formData.primeiraComejaca}
       onChange={handleChange}
     />
-    <CheckboxLabel>Sim, esta é minha primeira CONMEL. </CheckboxLabel>
+    <CheckboxLabel>Sim, esta é minha primeira EMEI. </CheckboxLabel>
   </CheckboxContainer>
 </InputGroup>
 

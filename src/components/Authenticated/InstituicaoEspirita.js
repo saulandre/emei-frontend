@@ -93,7 +93,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ActionButton = styled.button`
-  background: linear-gradient(135deg, #6599FF, #6599FF);
+  background: linear-gradient(135deg, #d64042, #d64042);
   color: white;
   border: none;
   padding: 1rem 1.5rem;
@@ -154,7 +154,7 @@ const Table = styled.table`
 `;
 
 const TableHead = styled.thead`
-  background: #6599FF;
+  background: #d64042;
   color: white;
 `;
 
@@ -193,7 +193,7 @@ const TableCell = styled.td`
 const SubmitButton = styled.button`
   width: 100%;
   padding: 1.2rem;
-  background: linear-gradient(135deg, #6599FF, #6599FF);
+  background: linear-gradient(135deg, #d64042, #d64042);
   color: #fff;
   border: none;
   border-radius: 0.8rem;
