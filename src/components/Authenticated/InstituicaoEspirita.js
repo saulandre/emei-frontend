@@ -423,10 +423,10 @@ const IePage = () => {
           <Header>
             <Title>INSTITUIÇÃO ESPÍRITA</Title>
             <ButtonContainer>
-            <ActionButton style={{ background: "#0d1b2a" }} onClick={() => handleModeChange('adicionar')}>
+            <ActionButton style={{ background: "#d64042" }} onClick={() => handleModeChange('adicionar')}>
   <FiPlus size={18} style={{ marginRight: "8px" }} /> Adicionar
 </ActionButton>
-              <ActionButton style={{ background: "#0d1b2a" }} onClick={() => handleModeChange('alterar')}>
+              <ActionButton style={{ background: "#d64042" }} onClick={() => handleModeChange('alterar')}>
                 <FiEdit size={18} /> Alterar
               </ActionButton>
             </ButtonContainer>
@@ -441,6 +441,7 @@ const IePage = () => {
           Você está no modo de adicionar instituição espírita.
         </p>
       )}
+      
 {formMode === 'alterar' && (
   <SearchContainer>
     <Label>

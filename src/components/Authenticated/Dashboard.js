@@ -557,7 +557,7 @@ useEffect(() => {
 
  <SmallButton
   onClick={() =>
-    window.open('https://conmelrj.com.br/enviar-comprovante', '_blank', 'noopener,noreferrer')
+    window.open('https://emeirj.com.br/enviar-comprovante', '_blank', 'noopener,noreferrer')
   }
 >
   <FiCreditCard size={14} style={{ marginRight: 6 }} />

@@ -20,7 +20,7 @@ const TextInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #6599FF;
+    border-color: #d64042;
   }
 `;
 const Title = styled.h1`
@@ -89,7 +89,7 @@ const PixInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #6599FF;
+    border-color: #d64042;
     background: #fff;
   }
 `;
@@ -112,7 +112,7 @@ const FileInput = styled.input`
 
 const SendButton = styled.button`
   width: 200px;
-  background-color: ${props => (props.disabled ? '#6599FF' : '#6599FF')};
+  background-color: ${props => (props.disabled ? '#d64042' : '#d64042')};
   color: white;
   padding: 0.75rem;
   border: none;
@@ -212,30 +212,30 @@ const handleSend = async () => {
 
       <CardsGrid>
         <Card>
-          <CardTitle>Inscrição sem Camisa R$ 50,00</CardTitle>
+          <CardTitle>Inscrição sem Camisa R$ 40,00</CardTitle>
           <QRImage src="/qrcode50.png" alt="QR Code Inscrição sem Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
             readOnly
-            value="00020126430014BR.GOV.BCB.PIX012117ceu.ceerj@gmail.com520400005303986540550.005802BR5901N6001C6212050835CONMEL63049284"
+            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
             onFocus={(e) => e.target.select()}
           />
         </Card>
 
         <Card>
-          <CardTitle>Inscrição com Camisa R$ 75,00</CardTitle>
+          <CardTitle>Inscrição com Camisa R$ 70,00</CardTitle>
           <QRImage src="/qrcode75.png" alt="QR Code Inscrição com Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
             readOnly
-            value="00020126360014BR.GOV.BCB.PIX0114+5521992733029520400005303986540575.005802BR5920Valeria Cid Carvalho6014Rio de Janeiro62070503***6304252B"
+            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540570.005802BR5901N6001C62100506EMEI7063041787"
             onFocus={(e) => e.target.select()}
           />
         </Card>
       </CardsGrid>
 
       <InfoText>
-        Chave PIX: <StrongText>17ceu.ceerj@gmail.com</StrongText> em nome de <StrongText>Valéria Cid Carvalho</StrongText>
+        Chave PIX: <StrongText>polo20_genesare@comeerj.com.br</StrongText> em nome de <StrongText>Conselho Espírita do Est. Rio de Janeiro</StrongText>
       </InfoText>
       <br></br>
     <Label htmlFor="nameInput">Nome do Inscrito</Label>
@@ -257,12 +257,13 @@ const handleSend = async () => {
       />
       {file && <InfoText>Arquivo selecionado: <StrongText>{file.name}</StrongText></InfoText>}
 
-      <SendButton
-        disabled={!file || sending}
-        onClick={handleSend}
-      >
-        {sending ? "Enviando..." : "Enviar comprovante"}
-      </SendButton>
+<SendButton
+  disabled={!file || sending}
+  onClick={handleSend}
+  style={{ background: "#d64042", color: "white" }}
+>
+  {sending ? "Enviando..." : "Enviar comprovante"}
+</SendButton>
 
       <FeedbackMessage error={feedback?.error}>
         {feedback?.message || "\u00A0" /* espaço para manter altura */}

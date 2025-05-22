@@ -1,10 +1,10 @@
 export const themes = {
     professional: {
-      background: 'linear-gradient(135deg, #003049, #003049, #003049)',
+      background: 'linear-gradient(135deg, #d64042, #d64042, #d64042)',
       cardBackground: '#e7ecef',
       textColor: '#22223b',
       buttonBackground: 'linear-gradient(135deg, #d64042, #d64042)',
-      tableHeaderBackground: '#003049',
+      tableHeaderBackground: '#d64042',
       tableHeaderColor: 'white',
       tableRowEvenBackground: '#f8f9fa',
       tableRowHoverBackground: '#f1f3f5',
