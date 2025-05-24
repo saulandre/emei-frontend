@@ -306,7 +306,27 @@ const SmallButton = styled.button`
 }
 animation: spin 1s linear infinite;
 `;
+const MobileOnlyButton = styled.button`
+  display: none;
 
+  @media (max-width: 768px) {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #d64042;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #6599FF;
+    }
+  }
+`;
 const StatusPill = styled.span`
   display: inline-flex;
   align-items: center;
@@ -455,7 +475,9 @@ const handlePagamento = async (item) => {
   };
 
   const handleSearch = (e) => setSearch(e.target.value);
-
+    const handleInscrever = () => {
+    window.open('https://conmelrj.com.br/inscrever', '_blank');
+  };
   const filteredData = Array.isArray(inscricoes) 
   ? inscricoes.filter(item => {
       const searchTerm = search.toLowerCase();
@@ -486,7 +508,10 @@ useEffect(() => {
     <ThemeProvider theme={themes[theme]}>
       <Container>
 
-
+       <br></br><br></br>
+     <MobileOnlyButton onClick={handleInscrever}>
+        Inscrever
+      </MobileOnlyButton>
         <ContentWrapper>
           <FormCard>
    
