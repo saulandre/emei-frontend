@@ -455,22 +455,20 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
  <section>
    <h3>1. Dados de Identificação</h3>
    <p><strong>1.1 Evento:</strong> Encontro de Mocidades Espíritas em Irajá - EMEI.</p>
-   <p><strong>1.2 Promoção e Coordenação Geral:</strong>Área da Educação Espírita do 23° CEU / CEERJ</p>
-      <p><strong>1.2 Promoção e Coordenação Geral:</strong>Área da Educação Espírita do 23° CEU / CEERJ</p>
+   <p><strong>1.2 Promoção:</strong> Área da Educação Espírita do 23° CEU / CEERJ</p>
+      <p><strong>1.3 Execução:</strong> Coordenação Geral</p>
 
-   <p><strong>1.3 Período:</strong> 02 de agosto de 2025</p>
+   <p><strong>1.4 Período:</strong> 02 de agosto de 2025</p>
    <ul>
-     <li><strong>Início:</strong>02/08 (Sábado)</li>
+     <li><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz</p>
    </ul>
-
-   <p><strong>1.4 Público-Alvo:</strong></p>
+   <p><strong>1.6 Público-Alvo:</strong></p>
    <ul>
      <li><strong>Confraternistas:</strong> Jovens espíritas de 11 a 21 anos completos até a data do evento, <b>que estejam frequentando as reuniões do Setor de Juventude</b>, de uma Instituição Espírita com pelo menos 1 ano até a data da inscrição com 70% de presença.</li>
      <li><strong>Tarefeiros do Bem:</strong>  Espíritas de 22 a 26 anos completos até a data do evento, vinculados ao setor de juventude ou a outro setor de uma Instituição Espírita, pelo período mínimo de 1 ano, com 70% de frequência. Este grupo, além das atividades de estudo, poderá participar de atividades nas Equipes, sendo elas: estágio e trabalho voluntário.</li>
      <li><strong>Membros de Equipe:</strong> Espíritas a partir de 18 anos até a data do evento, que estejam participando ativamente a pelo menos 1 ano de uma Instituição Espírita. Ao se inscrever, convém que o participante liste as tarefas que tem habilidade para desempenhar, colocando-se à disposição da Coordenação Geral, para aproveitamento em alguma equipe. Para participar da equipe de estudos, é necessário que o participante esteja atuando como evangelizador de algum Ciclo de Juventude ou de infância, se for evangelizar Pequenos Companheiros.</li>
-     <li><strong>Pequenos Companheiros:</strong> Filhos de Membros de Equipe, a partir de 3 a 10 anos de idade, na data do evento, poderão participar, cumprindo a programação previamente elaborada em consonância com o tema central.</li>
-     <li><strong>Pais:</strong> Participantes há mais de 1 ano em uma Instituição Espírita e que sejam Pais ou Responsáveis de um jovem presente na Comejaca.</li>
-     <li><strong>Demais CEUs/CEERJ:</strong> Aceitar-se-ão inscrições de outros CEEU's, desde que atendam todos os critérios estabelecidos para Confraternistas, Tarefeiros do bem, Pais e Membros de equipe. A ficha de inscrição deve ser assinada pelo presidente da Instituição Espírita a que pertença.</li>
+     <li><strong>Pequenos Companheiros:</strong> Filhos de Membros de Equipe, a partir de 2 a 10 anos de idade, na data do evento, poderão participar, cumprindo a programação previamente elaborada em consonância com o tema central.</li>
+     <li><strong>Demais CEUs/CEERJ:</strong> Aceitar-se-ão inscrições de outros CEU's, desde que atendam todos os critérios estabelecidos para Confraternistas, Tarefeiros do bem, Pais e Membros de equipe. A ficha de inscrição deve ser assinada pelo presidente da Instituição Espírita a que pertença.</li>
    </ul>
  </section>
 
@@ -497,22 +495,20 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
  <section>
    <h3>4. Tema Central</h3>
    <blockquote>
-     <p><strong>Mediunidade... precisamos conversar!</strong></p>
-     <footer>“Vossos filhos e vossas filhas profetizarão.” — Atos 2:17</footer>
-   </blockquote>
+     <p><strong>Mediunidade: Entre Dimenções</strong></p>
+     </blockquote>
  </section>
 
  <section>
    <h3>5. Inscrições</h3>
 
-   <p><strong>5.1 PERÍODO DE INSCRIÇÃO:</strong> 13/04/2025 a 15/06/2025 (Período em que o participante deve preencher a ficha e encaminhar ao Dirigente da Área de Educação da sua Instituição Espírita, para que ele possa colher as assinaturas)</p> 
-   <p><strong>5.2 REPASSE DAS FICHAS PARA A COORDENAÇÃO GERAL DO EVENTO:</strong> Até 15/06/2025 (Data limite para que o Dirigente da Área de Educação da sua Instituição Espírita repasse as fichas para a Coordenação Geral do evento)</p>
-   <p><strong>5.3 IMPORTANTE: O representante da Área de Educação da Instituição Espírita deve assegurar que  todos os dados da Ficha de Inscrição estejam preenchidos corretamente, principalmente a data de nascimento.</strong></p>
-
-   <h4>5.4 Investimento</h4>
+   <p><strong>5.1 PERÍODO DE INSCRIÇÃO:</strong> 25/05/2025 a 10/07/2025 (Podendo sofrer alterações no decorrer do prazo em virtude da limitação máxima).</p> 
+    
+   <h4>5.2 Investimento</h4>
    <ul>
-     <li>R$ 60,00 ou mais — Confraternistas, Tarefeiros, Pais e Membros de Equipe</li>
-     <li>R$ 45,00 — Pequenos Companheiros</li>
+     <li>R$ 35,00 (Até 30/06/2025 - Após R$ 40,00) — Confraternistas, Tarefeiros, Pais e Membros de Equipe</li>
+     <li>R$ 20,00 — Pequenos Companheiros</li>
+     <li>R$ 30,00 — Camisa com o tema do evento (Opcional)</li>
    </ul>
    <p><em>Observação 1:</em> Este investimento destina-se às despesas de alimentação, material do estudo, material de limpeza e a materiais diversos necessários para a realização da Comejaca.
 
@@ -520,9 +516,10 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
    <p><em>Observação 2:</em>  Todos deverão contribuir com a importância acima mencionada até a data limite da inscrição, e qualquer dificuldade deverá ser resolvida pela Instituição Espírita da qual o participante participe, que então repassará para a Coordenação Geral, através de um comunicado por escrito.</p>
 
    <h4>5.5 DA CONTRIBUIÇÃO:</h4>
-   <p>PIX (E-mail): coordenacaogeral@comejaca.org.br ou através da Agência: 7151 e Conta Poupança: 08882-5, Banco Itaú (341). Favorecido: Vicente Jose L. Crisostomo. O comprovante deverá ser enviado por e-mail: coordenacaogeral@comejaca.org.br com a informação dos beneficiários deste pagamento. As fichas deverão ser entregues à Coordenação Geral até o dia 15 de junho de 2025 na 4ª RGP.</p>
+   <p>PIX (E-mail): polo20_genesare@comeerj.com.br ou através da Agência: 3836-9 (Mangaratiba) e Conta Poupança: 200.020-2 (Variação 51)
+, Banco do Brasil (341). Favorecido: Conselho Espírita do Est. Rio de Janeiro. O comprovante deverá ser enviado por e-mail: emeiiraja23@gmail.com ou pelo site de Inscrição com a informação dos beneficiários deste pagamento. O pagamento deverá ser feito até o dia 10/07/2025.</p>
 
-   <h4>5.6 NÃO SERÃO ACEITAS INSCRIÇÕES APÓS O DIA 15/06/2025, E NEM SERÃO FEITAS INSCRIÇÕES NO LOCAL DO EVENTO. </h4>
+   <h4>5.6 NÃO SERÃO ACEITAS INSCRIÇÕES APÓS O DIA 10/07/2025, E NEM SERÃO FEITAS INSCRIÇÕES NO LOCAL DO EVENTO. </h4>
   
    <h4>5.7 A INSCRIÇÃO É PESSOAL E INTRANSFERÍVEL, NÃO SENDO PERMITIDAS SUBSTITUIÇÕES. </h4>
 
@@ -533,14 +530,14 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
 
 <p><strong>	5.8.2	Membros de Equipe:</strong> Através da participação nas Reuniões Gerais e nas reuniões de Equipe.
 </p>
-<p><em>Observação 1:</em> Procurar saber as datas das reuniões das equipes e cuidar de frequentá-las assiduamente (mínimo 70%), garantindo assim o seu direito de participar da COMEJACA.
+<p><em>Observação 1:</em> Procurar saber as datas das reuniões das equipes e cuidar de frequentá-las assiduamente (mínimo 70%), garantindo assim o seu direito de participar da CONMEL.
 
 </p>
 <p style={{ textAlign: 'center', marginTop: '2rem' }}>
   <a href="#" onClick={onClose}  style={{
     display: 'inline-block',
     textDecoration: 'none',
-    color: '#007BFF',
+    color: '#d64042',
     cursor: 'pointer',
     fontWeight: '500',
     marginBottom: '2rem',
