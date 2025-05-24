@@ -459,8 +459,8 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
       <p><strong>1.3 Execução:</strong> Coordenação Geral</p>
 
    <p><strong>1.4 Período:</strong> 02 de agosto de 2025</p>
-   <ul>
-     <li><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz</li>
+   
+     <p><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz<p>
    </ul>
    <p><strong>1.6 Público-Alvo:</strong></p>
    <ul>
