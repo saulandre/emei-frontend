@@ -224,11 +224,11 @@ const handleSend = async () => {
 
         <Card>
           <CardTitle>Inscrição com Camisa R$ 65,00 (Promoção válida até 30/06/2025 - Após, o valor será R$ 70,00)</CardTitle>
-          <QRImage src="/qrcode75.png" alt="QR Code Inscrição com Camisa" />
+          <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
             readOnly
-            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540570.005802BR5901N6001C62100506EMEI7063041787"
+            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
             onFocus={(e) => e.target.select()}
           />
         </Card>
