@@ -452,25 +452,28 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
 <ModalSubtitle>ENCONTRO DE MOCIDADES ESPÍRITAS EM IRAJÁ - EMEI</ModalSubtitle>
 
 
- <section>
-   <h3>1. Dados de Identificação</h3>
-   <p><strong>1.1 Evento:</strong> Encontro de Mocidades Espíritas em Irajá - EMEI.</p>
-   <p><strong>1.2 Promoção:</strong> Área da Educação Espírita do 23° CEU / CEERJ</p>
-      <p><strong>1.3 Execução:</strong> Coordenação Geral</p>
+<section>
+  <h3>1. Dados de Identificação</h3>
+  <p><strong>1.1 Evento:</strong> Encontro de Mocidades Espíritas em Irajá - EMEI.</p>
+  <p><strong>1.2 Promoção:</strong> Área da Educação Espírita do 23º CEU / CEERJ.</p>
+  <p><strong>1.3 Execução:</strong> Coordenação Geral.</p>
+  <p><strong>1.4 Período:</strong> 2 de agosto de 2025.</p>
+  <p><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz.</p>
 
-   <p><strong>1.4 Período:</strong> 02 de agosto de 2025</p>
-   
-     <p><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz<p>
-   </ul>
-   <p><strong>1.6 Público-Alvo:</strong></p>
-   <ul>
-     <li><strong>Confraternistas:</strong> Jovens espíritas de 11 a 21 anos completos até a data do evento, <b>que estejam frequentando as reuniões do Setor de Juventude</b>, de uma Instituição Espírita com pelo menos 1 ano até a data da inscrição com 70% de presença.</li>
-     <li><strong>Tarefeiros do Bem:</strong>  Espíritas de 22 a 26 anos completos até a data do evento, vinculados ao setor de juventude ou a outro setor de uma Instituição Espírita, pelo período mínimo de 1 ano, com 70% de frequência. Este grupo, além das atividades de estudo, poderá participar de atividades nas Equipes, sendo elas: estágio e trabalho voluntário.</li>
-     <li><strong>Membros de Equipe:</strong> Espíritas a partir de 18 anos até a data do evento, que estejam participando ativamente a pelo menos 1 ano de uma Instituição Espírita. Ao se inscrever, convém que o participante liste as tarefas que tem habilidade para desempenhar, colocando-se à disposição da Coordenação Geral, para aproveitamento em alguma equipe. Para participar da equipe de estudos, é necessário que o participante esteja atuando como evangelizador de algum Ciclo de Juventude ou de infância, se for evangelizar Pequenos Companheiros.</li>
-     <li><strong>Pequenos Companheiros:</strong> Filhos de Membros de Equipe, a partir de 2 a 10 anos de idade, na data do evento, poderão participar, cumprindo a programação previamente elaborada em consonância com o tema central.</li>
-     <li><strong>Demais CEUs/CEERJ:</strong> Aceitar-se-ão inscrições de outros CEU's, desde que atendam todos os critérios estabelecidos para Confraternistas, Tarefeiros do bem, Pais e Membros de equipe. A ficha de inscrição deve ser assinada pelo presidente da Instituição Espírita a que pertença.</li>
-   </ul>
- </section>
+  <p><strong>1.6 Público-Alvo:</strong></p>
+  <ul>
+    <li><strong>Confraternistas:</strong> Jovens espíritas de 11 a 21 anos completos até a data do evento, <b>que estejam frequentando as reuniões do Setor de Juventude</b> de uma Instituição Espírita há pelo menos 1 ano até a data da inscrição, com 70% de presença.</li>
+
+    <li><strong>Tarefeiros do Bem:</strong> Espíritas de 22 a 26 anos completos até a data do evento, vinculados ao Setor de Juventude ou a outro setor de uma Instituição Espírita há no mínimo 1 ano, com 70% de frequência. Este grupo, além das atividades de estudo, poderá participar de atividades nas Equipes, como estágio e trabalho voluntário.</li>
+
+    <li><strong>Membros de Equipe:</strong> Espíritas a partir de 18 anos, até a data do evento, que estejam participando ativamente há pelo menos 1 ano de uma Instituição Espírita. Ao se inscrever, o participante deve listar as tarefas que tem habilidade para desempenhar, colocando-se à disposição da Coordenação Geral para atuação em alguma equipe. Para participar da Equipe de Estudos, é necessário estar atuando como evangelizador de algum Ciclo de Juventude ou da Infância (no caso de evangelizar os Pequenos Companheiros).</li>
+
+    <li><strong>Pequenos Companheiros:</strong> Filhos de Membros de Equipe, de 2 a 10 anos de idade na data do evento, poderão participar da programação previamente elaborada em consonância com o tema central.</li>
+
+    <li><strong>Demais CEUs/CEERJ:</strong> Serão aceitas inscrições de outros CEUs, desde que atendam a todos os critérios estabelecidos para Confraternistas, Tarefeiros do Bem, Pais e Membros de Equipe. A ficha de inscrição deve ser assinada pelo presidente da Instituição Espírita à qual pertençam.</li>
+  </ul>
+</section>
+
 
  <section>
    <h3>2. Objetivo</h3>
