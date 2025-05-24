@@ -212,7 +212,7 @@ const handleSend = async () => {
 
       <CardsGrid>
         <Card>
-          <CardTitle>Inscrição sem Camisa R$ 40,00</CardTitle>
+          <CardTitle>Inscrição sem Camisa R$ 35,00 (Promoção válida até 30/06/2025 - Após o valor será R$ 40,00)</CardTitle>
           <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
@@ -223,7 +223,7 @@ const handleSend = async () => {
         </Card>
 
         <Card>
-          <CardTitle>Inscrição com Camisa R$ 70,00</CardTitle>
+          <CardTitle>Inscrição com Camisa R$ 65,00</CardTitle>
           <QRImage src="/qrcode75.png" alt="QR Code Inscrição com Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
