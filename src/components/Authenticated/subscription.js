@@ -446,19 +446,21 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
  <ModalContent isVisible={isOpen}>
  <CloseButton onClick={onClose}>✖</CloseButton>
 
- <ModalTitle>Plano Geral — XLVI COMEJACA 2025</ModalTitle>
-<ModalSubtitle>Confraternização das Mocidades Espíritas de Jacarepaguá</ModalSubtitle>
-
+ <ModalTitle>23º CONSELHO ESPÍRITA DE UNIFICAÇÃO - 23º CEU</ModalTitle>
+<ModalSubtitle>ÁREA DA EDUCAÇÃO ESPÍRITA</ModalSubtitle>
+<ModalSubtitle>SERVIÇO DE EVANGELIZAÇÃO DA FAMÍLIA - SEF</ModalSubtitle>
+<ModalSubtitle>ENCONTRO DE MOCIDADES ESPÍRITAS EM IRAJÁ - EMEI</ModalSubtitle>
 
 
  <section>
    <h3>1. Dados de Identificação</h3>
-   <p><strong>1.1 Evento:</strong> XLVI COMEJACA – Confraternização das Mocidades Espíritas de Jacarepaguá.</p>
-   <p><strong>1.2 Promoção e Coordenação Geral:</strong> Área de Educação do 20º CEU I e II / CEERJ</p>
-   <p><strong>1.3 Período:</strong> 19 e 20 de julho de 2025</p>
+   <p><strong>1.1 Evento:</strong> Encontro de Mocidades Espíritas em Irajá - EMEI.</p>
+   <p><strong>1.2 Promoção e Coordenação Geral:</strong>Área da Educação Espírita do 23° CEU / CEERJ</p>
+      <p><strong>1.2 Promoção e Coordenação Geral:</strong>Área da Educação Espírita do 23° CEU / CEERJ</p>
+
+   <p><strong>1.3 Período:</strong> 02 de agosto de 2025</p>
    <ul>
-     <li><strong>Início:</strong>19/07 (Sábado)</li>
-     <li><strong>Término:</strong>20/07 (Domingo)</li>
+     <li><strong>Início:</strong>02/08 (Sábado)</li>
    </ul>
 
    <p><strong>1.4 Público-Alvo:</strong></p>
@@ -1352,8 +1354,8 @@ mental, emocional?"
         </CheckboxLabel>
       </CheckboxContainer> 
 
-{/*       <PlanoGeralModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> */}
-            <SubmitButton type="submit" disabled={isSubmitting}>
+{/*      <PlanoGeralModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} /> 
+ */}            <SubmitButton type="submit" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                     <FiLoader className="spin" />

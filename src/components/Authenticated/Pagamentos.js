@@ -213,11 +213,11 @@ const handleSend = async () => {
       <CardsGrid>
         <Card>
           <CardTitle>Inscrição sem Camisa R$ 40,00</CardTitle>
-          <QRImage src="/qrcode50.png" alt="QR Code Inscrição sem Camisa" />
+          <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
           <Label>PIX Copia e Cola</Label>
           <PixInput
             readOnly
-            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
+            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
             onFocus={(e) => e.target.select()}
           />
         </Card>
