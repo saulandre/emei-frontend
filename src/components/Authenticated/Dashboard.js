@@ -476,7 +476,7 @@ const handlePagamento = async (item) => {
 
   const handleSearch = (e) => setSearch(e.target.value);
     const handleInscrever = () => {
- window.location.href = 'https://conmelrj.com.br/inscrever';
+ window.location.href = 'https://emeirj.com.br/inscrever';
 
   };
   const filteredData = Array.isArray(inscricoes) 
