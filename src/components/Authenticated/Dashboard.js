@@ -323,7 +323,7 @@ const MobileOnlyButton = styled.button`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #6599FF;
+      background-color: #d64042;
     }
   }
 `;
