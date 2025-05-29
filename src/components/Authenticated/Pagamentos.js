@@ -272,6 +272,8 @@ function renderCard() {
   </tbody>
 </table>
         <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
+                        <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
         <Label>PIX Copia e Cola</Label>
         <PixInput
           readOnly
@@ -323,6 +325,8 @@ function renderCard() {
   </tbody>
 </table>
         <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+                        <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
         <Label>PIX Copia e Cola</Label>
         <PixInput
           readOnly
@@ -482,6 +486,8 @@ function renderCard() {
 
 
         <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+                        <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
                 <Label>PIX Copia e Cola</Label>
 
         <PixInput
@@ -538,6 +544,8 @@ function renderCard() {
 
 
         <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+                        <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
         <Label >PIX Copia e Cola</Label>
         <PixInput
           readOnly
