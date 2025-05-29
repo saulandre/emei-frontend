@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from 'react-router-dom';
+
 import styled from "styled-components";
 import axios from "axios";
 const Container = styled.div`
@@ -13,20 +15,34 @@ const Container = styled.div`
 const TextInput = styled.input`
   width: 200px;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
   font-size: 0.875rem;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
+  text-align: center;
 
   &:focus {
     outline: none;
     border-color: #d64042;
   }
 `;
+
+const FileUploadWrapper = styled.div`
+  width: 100%;
+  background-color: #d64042; 
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
   color: #374151;
+
   margin-bottom: 2rem;
 
   @media (max-width: 768px) {
@@ -39,11 +55,9 @@ const CardsGrid = styled.div`
   grid-template-columns: 1fr;
   gap: 2rem;
   width: 100%;
-  max-width: 900px;
-
-  @media(min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  max-width: 550px;
+  
+  
 `;
 
 const Card = styled.div`
@@ -52,6 +66,9 @@ const Card = styled.div`
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   padding: 1.5rem;
   text-align: center;
+ 
+
+  
 `;
 
 const CardTitle = styled.h2`
@@ -59,21 +76,28 @@ const CardTitle = styled.h2`
   font-weight: 600;
   margin-bottom: 1.25rem;
   color: #1f2937;
+    width: 350px;
+    text-align:center;
+    display: flex;
+justify-content: center;
+align-items: center; 
+      margin-left: auto;
+  margin-right: auto;
 `;
 
 const QRImage = styled.img`
   width: 160px;
   height: 160px;
-  margin-bottom: 1.5rem;
   object-fit: contain;
+  margin-top:20px
 `;
 
 const Label = styled.label`
   display: block;
   font-size: 1rem;
   font-weight: 500;
-  color: #4b5563;
-  margin-bottom: 0.5rem;
+  
+  text-align: center
 `;
 
 const PixInput = styled.input`
@@ -93,11 +117,14 @@ const PixInput = styled.input`
     background: #fff;
   }
 `;
-
+const CardDescription = styled.p`
+  font-size: 1rem;
+  color: #666666;
+`;
 const InfoText = styled.p`
   font-size: 1rem;
   color: #4b5563;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 `;
 
@@ -109,6 +136,19 @@ const FileInput = styled.input`
   width: 200px;
   margin-bottom: 0.5rem;
 `;
+const cellStyleLeft = {
+  padding: '12px 16px',
+  borderTopLeftRadius: '8px',
+  borderBottomLeftRadius: '8px',
+  textAlign: 'left',
+};
+
+const cellStyleRight = {
+  padding: '12px 16px',
+  borderTopRightRadius: '8px',
+  borderBottomRightRadius: '8px',
+  textAlign: 'right',
+};
 
 const SendButton = styled.button`
   width: 200px;
@@ -116,7 +156,7 @@ const SendButton = styled.button`
   color: white;
   padding: 0.75rem;
   border: none;
-  margin-top: 50px;
+  margin-top: 10px;
   border-radius: 0.375rem;
   font-weight: 600;
   font-size: 1rem;
@@ -141,17 +181,32 @@ const FeedbackMessage = styled.p`
 
 const PaymentPage = () => {
  const [file, setFile] = useState(null);
-  const [sending, setSending] = useState(false);
   const [feedback, setFeedback] = useState(null);
-  const [name, setName] = useState('');
+  const [sending, setSending] = useState(false);
+const [name, setName] = useState('');
+const [tipo, ] = useState('');
+const [tipoParticipacao, setTipoParticipacao] = useState('');
+const [camisa, setCamisa] = useState(false); // true ou false
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    setFeedback(null); // limpa feedback quando troca arquivo
+    setFeedback(null); 
   };
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const nome = params.get('nome');
+  const tipoParticipacao = params.get('tipoParticipacao');
+  const camisaParam = params.get('camisa');
 
- const handleSend = async () => {
+  if (nome) setName(nome);
+  if (tipoParticipacao) setTipoParticipacao(tipoParticipacao);
+if (camisaParam) setCamisa(camisaParam === 'true');
+}, []);
+
+
+
+const handleSend = async () => {
   if (!file || !name) {
     setFeedback({ error: true, message: 'Preencha todos os campos antes de enviar.' });
     return;
@@ -182,65 +237,376 @@ const PaymentPage = () => {
   }
 };
 
+function renderCard() {
+  if (tipoParticipacao === 'PC' && camisa === false) {
+    return (
+      <Card>
+             <CardTitle>Você está pagando inscrição de Pequeno companheiro com camisa do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Pequenos Companheiros</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 25,00</CardDescription>
+      </td>
+    </tr>
+   
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 25,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
+        <Label>PIX Copia e Cola</Label>
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          onFocus={(e) => e.target.select()}
+        />
+      </Card>
+    );
+  }
 
+  if (tipoParticipacao === 'PC' && camisa === true) {
+    return (
+      <Card>
+         <CardTitle>Você está pagando inscrição de Pequeno companheiro com camisa do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Pequenos Companheiros</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 25,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Camisa</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 30,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 55,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <Label>PIX Copia e Cola</Label>
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          onFocus={(e) => e.target.select()}
+        />
+      </Card>
+    );
+  }
+
+  if ((tipoParticipacao === 'Confraternista') && camisa === false) {
+    return (
+      <Card>
+    <CardTitle>Você está pagando inscrição de Confraternista do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Confraternista</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+ 
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <br></br>
+
+        <QRImage src="/qrcode35.png" alt="QR Code Inscrição com Camisa" />
+                <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
+        <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          onFocus={(e) => e.target.select()}
+        />
+           <InfoText>
+        
+   <StrongText>Titular:</StrongText> CEERJ - Conselho Espírita do Estado Rio de Janeiro
+      </InfoText>
+      </Card>
+    );
+  }
+
+   if ((tipoParticipacao === 'Trabalhador') && camisa === false) {
+    return (
+      <Card>
+    <CardTitle>Você está pagando inscrição de Confraternista do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Trabalhador</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+ 
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+        <br></br>
+
+        <QRImage src="/qrcode35.png" alt="QR Code Inscrição com Camisa" />
+                <CardDescription style={{color: '#000'}}>ou</CardDescription>
+
+        <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          onFocus={(e) => e.target.select()}
+        />
+           <InfoText>
+        
+   <StrongText>Titular:</StrongText> CEERJ - Conselho Espírita do Estado Rio de Janeiro
+      </InfoText>
+      </Card>
+    );
+  }
+
+  if ((tipoParticipacao === 'Trabalhador') && camisa === true) {
+    return (
+      <Card>
+        <CardTitle>Você está pagando inscrição de Trabalhador com camisa do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Trabalhador</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Camisa</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 30,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 65,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+                <Label>PIX Copia e Cola</Label>
+
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          onFocus={(e) => e.target.select()}
+        />
+      </Card>
+    );
+  }
+
+    if ((tipoParticipacao === 'Confraternista')  && camisa === true) {
+    return (
+      <Card>
+        <CardTitle>Você está pagando inscrição de Confraternista com camisa do encontro do EMEI 2025</CardTitle>
+<table
+  style={{
+    width: '100%',
+    color: '#000',
+    borderCollapse: 'separate',
+    borderSpacing: '0 8px',
+    fontFamily: 'Arial, sans-serif',
+  }}
+>
+  <tbody>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Confraternista</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 35,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+      <td style={cellStyleLeft}>
+        <CardDescription>Camisa</CardDescription>
+      </td>
+      <td style={cellStyleRight}>
+        <CardDescription>R$ 30,00</CardDescription>
+      </td>
+    </tr>
+    <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
+      <td style={{ ...cellStyleLeft, fontWeight: 'bold' }}>
+        <CardDescription>Total</CardDescription>
+      </td>
+      <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
+        <CardDescription>R$ 65,00</CardDescription>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <Label >PIX Copia e Cola</Label>
+        <PixInput
+          readOnly
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          onFocus={(e) => e.target.select()}
+        />
+      </Card>
+    );
+  }
+  return null; 
+}
 
   return (
+    
     <Container>
       <Title>PAGAMENTO DA INSCRIÇÃO</Title>
+ <FileUploadWrapper>
 
-      <CardsGrid>
-        <Card>
-          <CardTitle>Inscrição sem Camisa R$ 35,00 (Promoção válida até 30/06/2025 - Após, o valor será R$ 40,00)</CardTitle>
-          <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
-          <Label>PIX Copia e Cola</Label>
-          <PixInput
-            readOnly
-            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
-            onFocus={(e) => e.target.select()}
-          />
-        </Card>
+    <Label htmlFor="nameInput"><b>1º passo</b> - você deve confirmar se o nome do inscrito está correto</Label>
+    <br></br>
+<TextInput
+  id="nameInput"
+  type="text"
+  placeholder="Digite seu nome completo"
+  value={name}
+  readOnly
+  onChange={(e) => setName(e.target.value)}
+  disabled={sending}
+/>
+</FileUploadWrapper>
+ <br></br> <br></br>
 
-        <Card>
-          <CardTitle>Inscrição com Camisa R$ 65,00 (Promoção válida até 30/06/2025 - Após, o valor será R$ 70,00)</CardTitle>
-          <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
-          <Label>PIX Copia e Cola</Label>
-          <PixInput
-            readOnly
-            value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
-            onFocus={(e) => e.target.select()}
-          />
-        </Card>
-      </CardsGrid>
+ <Label style={{ color: "#000", fontWeight: "600" }}>
+  <b>2º passo</b> - Você deve realizar o pagamento com a chave PIX abaixo.
+</Label>
+<br></br><br></br>
+<CardsGrid>
+  {renderCard()}
+</CardsGrid>
 
+{/* 
       <InfoText>
-        Chave PIX: <StrongText>polo20_genesare@comeerj.com.br</StrongText> em nome de <StrongText>Conselho Espírita do Est. Rio de Janeiro</StrongText>
-      </InfoText>
+        
+        <StrongText>Chave PIX:</StrongText> polo20_genesare@comeerj.com.br <br></br><StrongText>Titular:</StrongText> CEERJ - Conselho Espírita do Estado Rio de Janeiro
+      </InfoText> */}
       <br></br>
-    <Label htmlFor="nameInput">Nome do Inscrito</Label>
-      <TextInput
-        id="nameInput"
-        type="text"
-        placeholder="Digite seu nome completo"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        disabled={sending}
-      />
-      <Label htmlFor="fileInput">Envie aqui seu comprovante de pagamento</Label>
-      <FileInput
-        id="fileInput"
-        type="file"
-        onChange={handleFileChange}
-        disabled={sending}
-        accept="image/*,.pdf"
-      />
+       
+  <FileUploadWrapper>
+  <Label htmlFor="fileInput"><b>3º passo</b> - clique em <b>ESCOLHER ARQUIVO</b> para anexar o comprovante! ✨🤩✨</Label>
+ <br></br>
+  <FileInput
+    id="fileInput"
+    type="file"
+    readOnly
+    onChange={handleFileChange}
+    disabled={sending}
+    accept="image/*,.pdf"
+  />
+</FileUploadWrapper>
+
       {file && <InfoText>Arquivo selecionado: <StrongText>{file.name}</StrongText></InfoText>}
+        <CardTitle style={{marginTop: '50px'}}><b>4º passo</b> - Enviar o comprovante 👇</CardTitle>
 
 <SendButton
   disabled={!file || sending}
   onClick={handleSend}
   style={{ background: "#d64042", color: "white" }}
 >
-  {sending ? "Enviando..." : "Enviar comprovante"}
+  {sending ? "Finalizando..." : "Finalizar"}
 </SendButton>
 
       <FeedbackMessage error={feedback?.error}>

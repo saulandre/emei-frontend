@@ -581,9 +581,13 @@ useEffect(() => {
     Imprimir
   </SmallButton>
 
- <SmallButton
+<SmallButton
   onClick={() =>
-    window.open('https://emeirj.com.br/enviar-comprovante', '_blank', 'noopener,noreferrer')
+    window.open(
+      `http://localhost:3000/enviar-comprovante?nome=${encodeURIComponent(item.nomeCompleto)}&tipoParticipacao=${encodeURIComponent(item.tipoParticipacao)}&camisa=${encodeURIComponent(item.camisa)}`,
+      '_blank',
+      'noopener,noreferrer'
+    )
   }
 >
   <FiCreditCard size={14} style={{ marginRight: 6 }} />

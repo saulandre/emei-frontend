@@ -791,8 +791,10 @@ const Atualizar = () => {
                   required
                 >
                   <option value="">Selecione</option>
-                  <option value="Confraternista">Confraternista</option>
-                  <option value="Trabalhador">Trabalhador</option>
+                     <option value="PC">Pequenos Companheiros | de 0 a 10 anos</option>
+
+                  <option value="Confraternista">Confraternista | de 11 a 26 anos</option>
+                  <option value="Trabalhador">Trabalhador | acima de 18 anos</option>
                 </Select>
               </InputGroup>
 
@@ -929,7 +931,7 @@ const Atualizar = () => {
         </InputGroup>
       )}
               <InputGroup>
-  <InputLabel><FiClock /> É sua primeira CONMEL? *</InputLabel>
+  <InputLabel><FiClock /> É seu primeiro EMEI? *</InputLabel>
   <CheckboxContainer>
     <CheckboxInput
       type="checkbox"
@@ -937,7 +939,7 @@ const Atualizar = () => {
       checked={formData.primeiraComejaca}
       onChange={handleChange}
     />
-    <CheckboxLabel>Sim, esta é minha primeira CONMEL.</CheckboxLabel>
+    <CheckboxLabel>Sim, este é o meu primeiro EMEI.</CheckboxLabel>
   </CheckboxContainer>
 </InputGroup>
 

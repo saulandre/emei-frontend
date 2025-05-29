@@ -1037,8 +1037,10 @@ const Formulario = () => {
                   required
                 >
                   <option value="">Selecione</option>
-                  <option value="Confraternista">Confraternista</option>
-                  <option value="Trabalhador">Trabalhador</option>
+                  <option value="PC">Pequenos Companheiros | de 0 a 10 anos</option>
+
+                  <option value="Confraternista">Confraternista | de 11 a 26 anos</option>
+                  <option value="Trabalhador">Trabalhador | acima de 18 anos</option>
                 </Select>
               </InputGroup>
 
