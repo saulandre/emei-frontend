@@ -584,7 +584,7 @@ useEffect(() => {
 <SmallButton
   onClick={() =>
     window.open(
-      `http://localhost:3000/enviar-comprovante?nome=${encodeURIComponent(item.nomeCompleto)}&tipoParticipacao=${encodeURIComponent(item.tipoParticipacao)}&camisa=${encodeURIComponent(item.camisa)}`,
+      `https://emeirj.com.br/enviar-comprovante?nome=${encodeURIComponent(item.nomeCompleto)}&tipoParticipacao=${encodeURIComponent(item.tipoParticipacao)}&camisa=${encodeURIComponent(item.camisa)}`,
       '_blank',
       'noopener,noreferrer'
     )
