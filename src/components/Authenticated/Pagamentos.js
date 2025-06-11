@@ -241,7 +241,7 @@ function renderCard() {
   if (tipoParticipacao === 'PC' && camisa === false) {
     return (
       <Card>
-             <CardTitle>Você está pagando inscrição de Pequeno companheiro com camisa do encontro do EMEI 2025</CardTitle>
+             <CardTitle>Você está pagando inscrição de Pequeno companheiro sem camisa do encontro do EMEI 2025</CardTitle>
 <table
   style={{
     width: '100%',
@@ -257,7 +257,7 @@ function renderCard() {
         <CardDescription>Pequenos Companheiros</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 25,00</CardDescription>
+        <CardDescription>R$ 20,00</CardDescription>
       </td>
     </tr>
    
@@ -266,20 +266,26 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 25,00</CardDescription>
+        <CardDescription>R$ 20,00</CardDescription>
       </td>
     </tr>
   </tbody>
 </table>
-        <QRImage src="/qrcode35.png" alt="QR Code Inscrição sem Camisa" />
+        <QRImage src="/qrcode20.png" alt="QR Code Inscrição sem Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label>PIX Copia e Cola</Label>
+        <br></br>
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540520.005802BR5901N6001C62150511EMEIPROMO2063044231"
           onFocus={(e) => e.target.select()}
         />
+
+                 <InfoText>
+        
+   <StrongText>Titular:</StrongText> CEERJ - Conselho Espírita do Estado Rio de Janeiro
+      </InfoText>
       </Card>
     );
   }
@@ -303,7 +309,7 @@ function renderCard() {
         <CardDescription>Pequenos Companheiros</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 25,00</CardDescription>
+        <CardDescription>R$ 20,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -319,20 +325,27 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 55,00</CardDescription>
+        <CardDescription>R$ 50,00</CardDescription>
       </td>
     </tr>
   </tbody>
 </table>
-        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode500.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label>PIX Copia e Cola</Label>
+                <br></br>
+
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540550.005802BR5901N6001C62150511EMEIPROMO5063044DD5"
           onFocus={(e) => e.target.select()}
         />
+
+                 <InfoText>
+        
+   <StrongText>Titular:</StrongText> CEERJ - Conselho Espírita do Estado Rio de Janeiro
+      </InfoText>
       </Card>
     );
   }
@@ -376,6 +389,8 @@ function renderCard() {
                 <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
+                <br></br>
+
         <PixInput
           readOnly
           value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
@@ -428,6 +443,8 @@ function renderCard() {
                 <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
+                <br></br>
+
         <PixInput
           readOnly
           value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
@@ -489,6 +506,7 @@ function renderCard() {
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
                 <Label>PIX Copia e Cola</Label>
+        <br></br>
 
         <PixInput
           readOnly
