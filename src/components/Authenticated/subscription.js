@@ -607,6 +607,11 @@ const Formulario = () => {
     deficienciaFisica: false,
     deficienciaOutra: false,
     deficienciaOutraDescricao: '',
+
+  comejaca: false,
+  conmel: false
+
+
   });
   
 
@@ -654,6 +659,8 @@ const Formulario = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+          [name]: type === 'checkbox' ? checked : value,
+
     }));
    
   
@@ -1347,7 +1354,29 @@ mental, emocional?"
                 />
               </InputGroup>
 
-        
+        <InputGroup>
+  <InputLabel>Selecione outros eventos que você queira participar</InputLabel>
+
+  <label>
+    <input
+      type="checkbox"
+      name="comejaca"
+      checked={formData.comejaca || false}
+      onChange={handleChange}
+    />
+    COMEJACA 
+  </label>
+<br></br>
+  <label>
+    <input
+      type="checkbox"
+      name="conmel"
+      checked={formData.conmel || false}
+      onChange={handleChange}
+    />
+    CONMEL
+  </label>
+</InputGroup>
             </FormGrid>
         <CheckboxContainer>
         <CheckboxInput type="checkbox" required />

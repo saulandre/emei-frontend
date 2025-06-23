@@ -359,8 +359,8 @@ const getToken = () => {
    <Header>
         <img src="/favicon.png" alt="Logo CONMEL" />
         <div>
-          <h1>CONMEL 2025</h1>
-          <h2>Confraternização das Mocidades Espíritas da Leopoldina</h2>
+          <h1>EMEI 2025</h1>
+          <h2>Confraternização das Mocidades Espíritas de Irajá</h2>
         </div>
       </Header>
         <Section>
