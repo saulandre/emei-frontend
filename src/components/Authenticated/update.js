@@ -291,6 +291,7 @@ const Atualizar = () => {
     comissao: '',
     camisa: false,
     tamanhoCamisa: '',
+    tipoCamisa: '',
     cep: '',
     estado: '',
     cidade: '',
@@ -495,6 +496,7 @@ const Atualizar = () => {
         vegetariano: formData.vegetariano || false,
         camisa: formData.camisa === "true" || formData.camisa === true,
         tamanhoCamisa: formData.tamanhoCamisa || "",
+        tipoCamisa: formData.tipoCamisa || "",
         primeiraComejaca: formData.primeiraComejaca || false,
         deficienciaAuditiva: formData.deficienciaAuditiva || false,
         deficienciaAutismo: formData.deficienciaAutismo || false,
@@ -759,11 +761,25 @@ const Atualizar = () => {
                     checked={formData.camisa}
                     onChange={handleChange}
                   />
-                  <CheckboxLabel>Sim, desejo comprar a camisa - R$ 25,00</CheckboxLabel>
+                  <CheckboxLabel>Sim, desejo comprar a camisa.</CheckboxLabel>
                 </CheckboxContainer>
               </InputGroup>
 
               {formData.camisa && (
+<>
+    <InputGroup>
+      <InputLabel>Tipo da Camisa *</InputLabel>
+      <Select
+        name="tipoCamisa"
+        value={formData.tipoCamisa}
+        onChange={handleChange}
+      >
+        <option value="">Selecione</option>
+        <option value="branca">Camisa Branca | R$ 30.00</option>
+        <option value="preta">Camisa Preta | R$ 40.00</option>
+      </Select>
+    </InputGroup>
+                
                 <InputGroup>
                   <InputLabel>Tamanho da Camisa *</InputLabel>
                   <Select
@@ -780,6 +796,7 @@ const Atualizar = () => {
                     <option value="GG">GG</option>
                   </Select>
                 </InputGroup>
+                </>
               )}
 
               <InputGroup>

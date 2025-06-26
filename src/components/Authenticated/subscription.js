@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import  styled, { ThemeProvider, keyframes } from "styled-components";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { FiClock, FiUser, FiMail, FiMapPin, FiCalendar, FiInfo, FiPhone , FiChevronLeft, FiFileText, FiShoppingBag, FiLoader } from "react-icons/fi";
+import { FiClock, FiUser, FiMail, FiMapPin, FiCalendar,  FiInfo, FiPhone , FiChevronLeft, FiFileText, FiShoppingBag, FiLoader } from "react-icons/fi";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ptBR } from "date-fns/locale";
 import axios from 'axios';
 import HeaderMain from './Header'
 import { FaWhatsapp } from "react-icons/fa";
-
+import { FaStar } from 'react-icons/fa';
 const Container = styled.div`
   background: ${({ theme }) => theme.background};
     display: flex;
@@ -280,6 +280,34 @@ const SubmitButton = styled.button`
 
 
 
+
+const Modal = styled.div`
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: center;
+`;
+
+const EventImage = styled.img`
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
+
+const VoltarButton = styled.button`
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
 // ANIMAÇÃO DE ENTRADA
 const fadeIn = keyframes`
   from {
@@ -301,6 +329,11 @@ const fadeOut = keyframes`
     opacity: 0;
     transform: scale(0.95);
   }
+`;
+const FixedLabel = styled.div`
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #4b0082;
 `;
 
 const ModalOverlay = styled.div`
@@ -325,7 +358,37 @@ width: 100%
 
   }
 `;
+const ListaDetalhes = styled.ul`
+  margin-left: 20px;
+  padding-left: 10px;
+`;
+const ResultBox = styled.div`
+  margin-top: 20px;
+  background-color: #d64042;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.6;
+`;
+const CheckboxWrapperList = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #d64042;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 
+  &:hover {
+    background-color: #e2d4ff;
+  }
+
+  input {
+    margin-right: 10px;
+  }
+`;
 const ModalContent = styled.div`
   background: white;
   padding: 2rem;
@@ -562,7 +625,10 @@ const PlanoGeralModal = ({ isOpen, onClose }) => {
 };
 
 const Formulario = () => {
-
+const imagensEventos = {
+  comejaca: 'https://via.placeholder.com/500x300?text=COMEJACA', // substitua pelo real
+  conmel: 'https://via.placeholder.com/500x300?text=CONMEL',     // substitua pelo real
+};
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
   const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -614,6 +680,29 @@ const Formulario = () => {
 
   });
   
+  const [selecionados, setSelecionados] = useState({
+    conmel: false,
+    comejaca: false,
+  });
+
+  const valoresExtras = {
+    conmel: 40,
+    comejaca: 50,
+  };
+
+  const eventosExtrasSelecionados = Object.keys(selecionados)
+    .filter((key) => selecionados[key]);
+
+  const descontoEmei = eventosExtrasSelecionados.length > 0 ? 10 : 0;
+  const valorEmeiOriginal = 40;
+  const valorEmeiComDesconto = valorEmeiOriginal - descontoEmei;
+
+  const totalExtras = eventosExtrasSelecionados.reduce(
+    (sum, key) => sum + valoresExtras[key],
+    0
+  );
+
+  const total = valorEmeiComDesconto + totalExtras;
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -652,7 +741,8 @@ const Formulario = () => {
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) age--;
     return age;
-  };
+  }; const [modalAberto, setModalAberto] = useState(false);
+  const [eventoSelecionado, setEventoSelecionado] = useState(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -663,7 +753,10 @@ const Formulario = () => {
 
     }));
    
-  
+   setSelecionados((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
     let formattedValue = value;
   
     if (name === "documentoResponsavel" || name === "telefone" || name === "telefoneResponsavel") {
@@ -690,7 +783,10 @@ const Formulario = () => {
           }
         );
       }
-  
+    if (checked) {
+      setEventoSelecionado(name);
+      setModalAberto(true);
+    }
      
       if (formattedValue.replace(/\D/g, "").length > 11) {
         formattedValue = formattedValue.substring(0, 14); 
@@ -745,7 +841,7 @@ const Formulario = () => {
         cep: formData.cep.replace(/\D/g, ''),
         id: formData.id,
         otherInstitution: formData.otherInstitution,
-        primeiraComejaca: formData.primeiraComejaca
+/*         primeiraComejaca: formData.primeiraComejaca */
       };
 
     
@@ -776,23 +872,7 @@ const Formulario = () => {
     }
   };
 
-  const formatPhone = (value) => {
-    if (!value) return "";
-    
-    // Remove tudo que não for número
-    const cleaned = value.replace(/\D/g, "");
-  
-    // Formata como telefone (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
-    if (cleaned.length > 10) {
-      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7, 11)}`;
-    } else if (cleaned.length > 6) {
-      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6, 10)}`;
-    } else if (cleaned.length > 2) {
-      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
-    } else {
-      return cleaned;
-    }
-  };
+
 
   const handleCepChange = async (e) => {
     const cep = e.target.value.replace(/\D/g, "");
@@ -1012,11 +1092,25 @@ const Formulario = () => {
                     checked={formData.camisa}
                     onChange={handleChange}
                   />
-                  <CheckboxLabel>Sim, desejo comprar a camisa - R$ 30,00</CheckboxLabel>
+                  <CheckboxLabel>Sim, desejo comprar a camisa.</CheckboxLabel>
                 </CheckboxContainer>
               </InputGroup> 
 
-              {formData.camisa && (
+               {formData.camisa && (
+<>
+    <InputGroup>
+      <InputLabel>Tipo da Camisa *</InputLabel>
+      <Select
+        name="tipoCamisa"
+        value={formData.tipoCamisa}
+        onChange={handleChange}
+      >
+        <option value="">Selecione</option>
+        <option value="branca">Camisa Branca | R$ 30.00</option>
+        <option value="preta">Camisa Preta | R$ 40.00</option>
+      </Select>
+    </InputGroup>
+                
                 <InputGroup>
                   <InputLabel>Tamanho da Camisa *</InputLabel>
                   <Select
@@ -1033,6 +1127,7 @@ const Formulario = () => {
                     <option value="GG">GG</option>
                   </Select>
                 </InputGroup>
+                </>
               )}
 
               <InputGroup>
@@ -1353,30 +1448,66 @@ mental, emocional?"
                   onChange={handleChange}
                 />
               </InputGroup>
+ <InputGroup></InputGroup>
+  {/*    <InputGroup>
+<InputLabel style={{ textAlign: "justify"}}>
+  <FaStar style={{ width: '10px', height: '10px', marginRight: '6px', color: '#FFD700' }} />
+  Sua inscrição está quase finalizada para o EMEI.
+</InputLabel>
 
-        <InputGroup>
-  <InputLabel>Selecione outros eventos que você queira participar</InputLabel>
 
-  <label>
-    <input
-      type="checkbox"
-      name="comejaca"
-      checked={formData.comejaca || false}
-      onChange={handleChange}
-    />
-    COMEJACA 
-  </label>
-<br></br>
-  <label>
-    <input
-      type="checkbox"
-      name="conmel"
-      checked={formData.conmel || false}
-      onChange={handleChange}
-    />
-    CONMEL
-  </label>
-</InputGroup>
+  <CheckboxWrapperList>
+        <input
+          type="checkbox"
+          name="conmel"
+          checked={selecionados.conmel}
+          onChange={(e) =>
+            setSelecionados({ ...selecionados, conmel: e.target.checked })
+          }
+        />
+        CONMEL - R$ 40
+      </CheckboxWrapperList>
+
+      <CheckboxWrapperList>
+        <input
+          type="checkbox"
+          name="comejaca"
+          checked={selecionados.comejaca}
+          onChange={(e) =>
+            setSelecionados({ ...selecionados, comejaca: e.target.checked })
+          }
+        />
+        COMEJACA - R$ 50
+      </CheckboxWrapperList>
+
+      <ResultBox>
+        Você está se inscrevendo para: <br></br> EMEI{eventosExtrasSelecionados.length > 0 && `, ${eventosExtrasSelecionados.map(e => e.toUpperCase()).join(', ')}`}
+        <br />
+        <br />
+      <u>Detalhes:</u>
+  <ul>
+
+<ListaDetalhes>
+  <li>EMEI: <strong>R$ {valorEmeiComDesconto},00</strong></li>  {selecionados.conmel && <li>CONMEL: R$ {valoresExtras.conmel},00</li>}
+  {selecionados.comejaca && <li>COMEJACA: R$ {valoresExtras.comejaca},00</li>}
+</ListaDetalhes>
+  </ul>
+        <br />
+        <strong>Total:</strong> R$ {total},00
+      </ResultBox>
+      </InputGroup>
+
+      {modalAberto && (
+        <ModalOverlay>
+          <Modal>
+            <EventImage
+              src={imagens[eventoSelecionado]}
+              alt={`Imagem do evento ${eventoSelecionado}`}
+            />
+            <VoltarButton onClick={fecharModal}>Voltar</VoltarButton>
+          </Modal>
+        </ModalOverlay>
+      )} */}
             </FormGrid>
         <CheckboxContainer>
         <CheckboxInput type="checkbox" required />
