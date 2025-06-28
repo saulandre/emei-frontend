@@ -733,7 +733,23 @@ const imagensEventos = {
 
     fetchInstitutions();
   }, [navigate, API_URL]);
-
+ const formatPhone = (value) => {
+    if (!value) return "";
+    
+    // Remove tudo que não for número
+    const cleaned = value.replace(/\D/g, "");
+  
+    // Formata como telefone (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+    if (cleaned.length > 10) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7, 11)}`;
+    } else if (cleaned.length > 6) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6, 10)}`;
+    } else if (cleaned.length > 2) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
+    } else {
+      return cleaned;
+    }
+  };
   const calculateAge = (date) => {
     const today = new Date();
     const birthDate = new Date(date);
@@ -765,9 +781,9 @@ const imagensEventos = {
     }
   
   
-    if (name === "telefone" || name === "telefoneResponsavel") {
+   if (name === "telefone" || name === "telefoneResponsavel") {
       formattedValue = formatPhone(value); 
-    }
+    } 
   
     if (name === "documentoResponsavel") {
       if (formattedValue.length === 11) {

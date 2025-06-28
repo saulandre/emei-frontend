@@ -186,8 +186,8 @@ const PaymentPage = () => {
 const [name, setName] = useState('');
 const [tipo, ] = useState('');
 const [tipoParticipacao, setTipoParticipacao] = useState('');
-const [camisa, setCamisa] = useState(false); // true ou false
-const [tipoCamisa, setTipoCamisa] = useState(false); 
+const [camisa, setCamisa] = useState(false);
+const [tipoCamisa, setTipoCamisa] = useState(null); 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -198,10 +198,12 @@ useEffect(() => {
   const nome = params.get('nome');
   const tipoParticipacao = params.get('tipoParticipacao');
   const camisaParam = params.get('camisa');
+  const tipoCamisaParam = params.get('tipoCamisa'); // <- aqui
 
   if (nome) setName(nome);
   if (tipoParticipacao) setTipoParticipacao(tipoParticipacao);
-if (camisaParam) setCamisa(camisaParam === 'true');
+  if (camisaParam) setCamisa(camisaParam === 'true');
+  if (tipoCamisaParam) setTipoCamisa(tipoCamisaParam); // <- e aqui
 }, []);
 
 
@@ -436,7 +438,7 @@ function renderCard() {
     </tr>
   </tbody>
 </table>
-        <QRImage src="/qrcode500.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode-emei-60.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label>PIX Copia e Cola</Label>
@@ -444,7 +446,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540550.005802BR5901N6001C62150511EMEIPROMO5063044DD5"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540560.005802BR5901N6001C62100506EMEI606304748D"
           onFocus={(e) => e.target.select()}
         />
 
@@ -517,10 +519,10 @@ function renderCard() {
 
 
 
-  if ((tipoParticipacao === 'Trabalhador') && camisa === true && tipoCamisa === 'preta') {
+  if ((tipoParticipacao === 'Trabalhador' || tipoParticipacao === 'Confraternista' ) && camisa === true && tipoCamisa === 'branca') {
     return (
       <Card>
-        <CardTitle>Você está pagando inscrição de Trabalhador com camisa preta do encontro do EMEI 2025</CardTitle>
+        <CardTitle>Você está pagando inscrição com camisa preta do encontro do EMEI 2025</CardTitle>
 <table
   style={{
     width: '100%',
@@ -533,7 +535,7 @@ function renderCard() {
   <tbody>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
       <td style={cellStyleLeft}>
-        <CardDescription>Trabalhador</CardDescription>
+        <CardDescription>Inscrição</CardDescription>
       </td>
       <td style={cellStyleRight}>
         <CardDescription>R$ 35,00</CardDescription>
@@ -576,10 +578,10 @@ function renderCard() {
     );
   }
 
-    if ((tipoParticipacao === 'Trabalhador') && camisa === true && tipoCamisa === 'branca') {
+    if ((tipoParticipacao === 'Trabalhador' || tipoParticipacao === 'Confraternista') && camisa === true && tipoCamisa === 'preta') {
     return (
       <Card>
-        <CardTitle>Você está pagando inscrição de Trabalhador com camisa branca do encontro do EMEI 2025</CardTitle>
+        <CardTitle>Você está pagando inscrição com camisa preta do encontro do EMEI 2025</CardTitle>
 <table
   style={{
     width: '100%',
@@ -592,7 +594,7 @@ function renderCard() {
   <tbody>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
       <td style={cellStyleLeft}>
-        <CardDescription>Trabalhador</CardDescription>
+        <CardDescription>Inscrição</CardDescription>
       </td>
       <td style={cellStyleRight}>
         <CardDescription>R$ 35,00</CardDescription>
@@ -600,10 +602,10 @@ function renderCard() {
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
       <td style={cellStyleLeft}>
-        <CardDescription>Camisa</CardDescription>
+        <CardDescription>Camisa preta</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 30,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
@@ -611,7 +613,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 65,00</CardDescription>
+        <CardDescription>R$ 75,00</CardDescription>
       </td>
     </tr>
   </tbody>
@@ -620,7 +622,7 @@ function renderCard() {
 
 
 
-        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode75.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
                 <Label>PIX Copia e Cola</Label>
@@ -628,7 +630,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540575.005802BR5901N6001C62150511EMEIPROMO756304BA99"
           onFocus={(e) => e.target.select()}
         />
       </Card>
@@ -637,7 +639,7 @@ function renderCard() {
 
 
 
-    if ((tipoParticipacao === 'Confraternista')  && camisa === true && tipoCamisa === 'preta') {
+/*     if ((tipoParticipacao === 'Confraternista')  && camisa === true && tipoCamisa === 'preta') {
     return (
       <Card>
         <CardTitle>Você está pagando inscrição de Confraternista com camisa preta do encontro do EMEI 2025</CardTitle>
@@ -749,7 +751,9 @@ function renderCard() {
         />
       </Card>
     );
-  }
+  } */
+
+
   return null; 
 }
 
