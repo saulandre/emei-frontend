@@ -522,7 +522,7 @@ function renderCard() {
   if ((tipoParticipacao === 'Trabalhador' || tipoParticipacao === 'Confraternista' ) && camisa === true && tipoCamisa === 'branca') {
     return (
       <Card>
-        <CardTitle>Você está pagando inscrição com camisa preta do encontro do EMEI 2025</CardTitle>
+        <CardTitle>Você está pagando inscrição com camisa branca do encontro do EMEI 2025</CardTitle>
 <table
   style={{
     width: '100%',
