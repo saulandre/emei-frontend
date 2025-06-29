@@ -433,7 +433,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 50,00</CardDescription>
+        <CardDescription>R$60,00</CardDescription>
       </td>
     </tr>
   </tbody>
