@@ -310,7 +310,7 @@ function renderCard() {
         <CardDescription>Confraternista</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
  
@@ -364,7 +364,7 @@ function renderCard() {
         <CardDescription>Trabalhador</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
  
@@ -563,7 +563,7 @@ function renderCard() {
 
 
 
-        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode70.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
                 <Label>PIX Copia e Cola</Label>
@@ -597,7 +597,7 @@ function renderCard() {
         <CardDescription>Inscrição</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -613,7 +613,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 75,00</CardDescription>
+        <CardDescription>R$ 80,00</CardDescription>
       </td>
     </tr>
   </tbody>
@@ -622,7 +622,7 @@ function renderCard() {
 
 
 
-        <QRImage src="/qrcode75.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode80.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
                 <Label>PIX Copia e Cola</Label>
@@ -658,7 +658,7 @@ function renderCard() {
         <CardDescription>Confraternista</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -674,7 +674,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 65,00</CardDescription>
+        <CardDescription>R$ 70,00</CardDescription>
       </td>
     </tr>
   </tbody>
@@ -683,7 +683,7 @@ function renderCard() {
 
 
 
-        <QRImage src="/qrcode65.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode70.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label >PIX Copia e Cola</Label>
@@ -715,7 +715,7 @@ function renderCard() {
         <CardDescription>Confraternista</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -731,7 +731,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 65,00</CardDescription>
+        <CardDescription>R$ 70,00</CardDescription>
       </td>
     </tr>
   </tbody>
