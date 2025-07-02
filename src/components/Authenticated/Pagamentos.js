@@ -319,14 +319,14 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
   </tbody>
 </table>
         <br></br>
 
-        <QRImage src="/qrcode35.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode40.png" alt="QR Code Inscrição com Camisa" />
                 <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
@@ -334,7 +334,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
           onFocus={(e) => e.target.select()}
         />
            <InfoText>
@@ -373,14 +373,14 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
   </tbody>
 </table>
         <br></br>
 
-        <QRImage src="/qrcode35.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/qrcode40.png" alt="QR Code Inscrição com Camisa" />
                 <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
         <Label style={{color: '#000'}}>PIX Copia e Cola</Label>
@@ -388,7 +388,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540535.005802BR5901N6001C62150511EMEIPROMO356304B3A9"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
           onFocus={(e) => e.target.select()}
         />
            <InfoText>
@@ -425,7 +425,7 @@ function renderCard() {
         <CardDescription>Camisa</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 30,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#e4e4e4', borderRadius: '8px' }}>
@@ -538,7 +538,7 @@ function renderCard() {
         <CardDescription>Inscrição</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 35,00</CardDescription>
+        <CardDescription>R$ 40,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -554,7 +554,7 @@ function renderCard() {
         <CardDescription>Total</CardDescription>
       </td>
       <td style={{ ...cellStyleRight, fontWeight: 'bold' }}>
-        <CardDescription>R$ 65,00</CardDescription>
+        <CardDescription>R$ 70,00</CardDescription>
       </td>
     </tr>
   </tbody>
@@ -571,7 +571,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540565.005802BR5901N6001C62150511EMEIPROMO656304B8D5"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
           onFocus={(e) => e.target.select()}
         />
       </Card>
