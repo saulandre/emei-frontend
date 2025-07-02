@@ -571,7 +571,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B299"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540570.005802BR5901N6001C62100506EMEI7063041787"
           onFocus={(e) => e.target.select()}
         />
       </Card>
@@ -630,7 +630,7 @@ function renderCard() {
 
         <PixInput
           readOnly
-          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540575.005802BR5901N6001C62150511EMEIPROMO756304BA99"
+          value="00020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540540.005802BR5901N6001C62100506EMEI406304B29900020126520014BR.GOV.BCB.PIX0130polo20_genesare@comeerj.com.br520400005303986540580.005802BR5901N6001C62100506EMEI80630406A3"
           onFocus={(e) => e.target.select()}
         />
       </Card>
