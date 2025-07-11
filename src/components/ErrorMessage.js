@@ -228,7 +228,7 @@ const VerificationCode = ({ userId, onVerified }) => {
   // Logout handler
   const handleLogout = () => {
     logout();  // Chama a função logout do contexto
-    navigate('/login');  // Redireciona para o login
+    navigate('/');  // Redireciona para o login
   };
 
   return (

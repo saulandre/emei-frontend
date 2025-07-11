@@ -27,7 +27,7 @@ export const AuthWrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #1b263b;
+  color: #000;
   margin-bottom: 30px;
 `;
 
@@ -38,10 +38,21 @@ export const StyledInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   height: 50px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    border-color: #d64042;
+  }
+
+  &:focus {
+    border-color: #d64042;
+    outline: none;
+  }
 `;
 
 export const StyledButton = styled.button`
-  background-color: #1b263b;
+  background-color: #d64042;
   color: #fff;
   padding: 10px 20px;
   border: none;

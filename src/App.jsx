@@ -18,7 +18,8 @@ import ServerStatus from './components/Unauthenticated/ServerStatus';
 import SessaoInfo from './components/Unauthenticated/SessaoInfo';
 import HeaderMain from './components/Authenticated/Header';
 import Pagamentos from './components/Authenticated/Pagamentos.js';
-import ChangePassword from './components/Unauthenticated/ChangePassword';
+/* import NovaSenha from "./components/Unauthenticated/ChangePassword"; */
+import ChangePassword from './components/Unauthenticated/NovaSenha.js';
 import {toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/globalStyles.css'; 
@@ -75,7 +76,7 @@ function AppContent() {
       <Route path="/registrar" element={<Register />} />
       <Route path="/recuperarsenha" element={<ForgotPassword />} />
       <Route path="/recuperarsenha/route" element={<ChangePassword />} />
-
+    <Route path="/novasenha" element={<ChangePassword />} />
       <Route path="*" element={<NotFound />} />
 
       {/* Rotas Privadas */}
@@ -91,6 +92,7 @@ function AppContent() {
       <Route path="/imprimir/:id" element={<ProtectedRoute><FichaInscricao /></ProtectedRoute>} />
       <Route path="/pagamentos" element={<ProtectedRoute><ListaParticipantes /></ProtectedRoute>} />
       <Route path="/enviar-comprovante" element={<ProtectedRoute><Pagamentos /></ProtectedRoute>} />
+
 
     </Routes>
   );
