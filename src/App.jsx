@@ -72,10 +72,11 @@ function AppContent() {
   return (
     <Routes>
       {/* Rotas Públicas */}
+          <Route path="/recuperarsenha/route" element={<ChangePassword />} />
       <Route path="/" element={<Login />} />
       <Route path="/registrar" element={<Register />} />
       <Route path="/recuperarsenha" element={<ForgotPassword />} />
-      <Route path="/recuperarsenha/route" element={<ChangePassword />} />
+  
     <Route path="/novasenha" element={<ChangePassword />} />
       <Route path="*" element={<NotFound />} />
 
