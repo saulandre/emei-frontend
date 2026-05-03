@@ -295,7 +295,7 @@ const HeaderMain = ({className }) => {
       <Container>
         <Header className={className}>
           <Wrapper><ImagemResponsiva src="/favicon.png" alt="Banner do evento" />
-          <Title>39º EMEI 2025</Title>
+          <Title>40º EMEI 2026</Title>
     </Wrapper>          <Nav>
 
 
