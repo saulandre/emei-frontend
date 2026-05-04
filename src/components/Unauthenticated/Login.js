@@ -325,7 +325,7 @@ const Login = () => {
 
   useEffect(() => {
     const emailPreenchido = formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-    const senhaPreenchida = formData.password && formData.password.length >= 8;
+    const senhaPreenchida = formData.password && formData.password.length > 0;
   
     if (emailPreenchido && senhaPreenchida) {
       handleSubmit();

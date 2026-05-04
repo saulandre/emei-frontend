@@ -23,12 +23,8 @@ const ListItem = styled.li`
 const PasswordStrengthIndicator = ({ password }) => {
   const rules = [
     {
-      label: "Pelo menos 8 caracteres",
-      test: (pw) => pw.length >= 8,
-    },
-    {
-      label: "Letra minúscula",
-      test: (pw) => /[a-z]/.test(pw),
+      label: "Pelo menos 6 caracteres",
+      test: (pw) => String(pw).trim().length >= 6,
     },
     {
       label: "Letra maiúscula",
@@ -37,10 +33,6 @@ const PasswordStrengthIndicator = ({ password }) => {
     {
       label: "Número",
       test: (pw) => /[0-9]/.test(pw),
-    },
-    {
-      label: "Caractere especial",
-      test: (pw) => /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\]/.test(pw),
     },
   ];
 

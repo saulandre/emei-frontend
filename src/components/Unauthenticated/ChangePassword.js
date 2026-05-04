@@ -11,11 +11,10 @@ import {
 } from "./SharedAuthStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-// SharedAuthStyles.js
-import styled from "styled-components";
-
-
-
+import {
+  validatePassword,
+  PASSWORD_POLICY_MESSAGE,
+} from "../../utils/passwordPolicy";
 
 
 
@@ -42,6 +41,10 @@ const ChangePassword = () => {
 
     if (formData.newPassword !== formData.confirmPassword) {
       return toast.error("A nova senha e a confirmação não coincidem.");
+    }
+
+    if (!validatePassword(formData.newPassword)) {
+      return toast.error(PASSWORD_POLICY_MESSAGE);
     }
 
     try {

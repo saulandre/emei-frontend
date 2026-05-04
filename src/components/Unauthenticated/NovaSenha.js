@@ -12,6 +12,10 @@ import {
 } from "./SharedAuthStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  validatePassword,
+  PASSWORD_POLICY_MESSAGE,
+} from "../../utils/passwordPolicy";
 
 /** Lê ?token= da URL, decodifica uma vez se necessário e valida formato JWT (3 segmentos). */
 function readResetJwtFromSearchParams(searchParams) {
@@ -74,11 +78,8 @@ const NovaSenha = () => {
       return toast.error("As senhas não coincidem.");
     }
 
-    const senhaForteRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (!senhaForteRegex.test(password)) {
-      return toast.error(
-        "A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número."
-      );
+    if (!validatePassword(password)) {
+      return toast.error(PASSWORD_POLICY_MESSAGE);
     }
 
     try {

@@ -6,6 +6,10 @@ import { FiUser, FiMail, FiLock } from 'react-icons/fi';
 import { toast } from "react-toastify";
 
 import PasswordStrengthIndicator from "./PasswordStrengthIndicator";
+import {
+  validatePassword,
+  PASSWORD_POLICY_MESSAGE,
+} from "../../utils/passwordPolicy";
 // Animação de fundo
 const gradientAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -229,7 +233,7 @@ const Register = () => {
     return (
       name.trim() !== '' &&
       isValidEmail(email) &&
-      password.length === 8 &&
+      validatePassword(password) &&
       confirmPassword === password
     );
   };
@@ -249,8 +253,8 @@ const Register = () => {
   
       // Validações
       if (name === 'password') {
-        if (value.length !== 8) {
-          setErrorMessage('A senha deve ter exatamente 8 caracteres.');
+        if (value && !validatePassword(value)) {
+          setErrorMessage(PASSWORD_POLICY_MESSAGE);
         } else {
           setErrorMessage('');
         }
@@ -259,8 +263,8 @@ const Register = () => {
       if (name === 'confirmPassword') {
         if (value !== updatedData.password) {
           setErrorMessage('A confirmação da senha deve ser igual à senha.');
-        } else if (value.length !== 8) {
-          setErrorMessage('A confirmação da senha deve ter exatamente 8 caracteres.');
+        } else if (value && !validatePassword(value)) {
+          setErrorMessage(PASSWORD_POLICY_MESSAGE);
         } else {
           setErrorMessage('');
         }
@@ -277,6 +281,11 @@ const Register = () => {
   
     if (formData.password !== formData.confirmPassword) {
       setError('As senhas não coincidem.');
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setError(PASSWORD_POLICY_MESSAGE);
       return;
     }
   
@@ -392,7 +401,7 @@ const Register = () => {
               onChange={handleChangePassword}
               placeholder="Confirmar senha"
               required
-              maxLength={8}
+              autoComplete="new-password"
               aria-label="Confirmar senha"
               className={confirmPasswordError ? 'error' : ''}
               onFocus={() => setIsPasswordFocused(true)}
