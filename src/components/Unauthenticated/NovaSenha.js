@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,10 +13,31 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+/** Lê ?token= da URL, decodifica uma vez se necessário e valida formato JWT (3 segmentos). */
+function readResetJwtFromSearchParams(searchParams) {
+  const raw = searchParams.get("token");
+  if (raw == null || typeof raw !== "string") return null;
+  let t = raw.trim();
+  if (!t) return null;
+  try {
+    t = decodeURIComponent(t);
+  } catch {
+    /* já decodificado ou string inválida para decode — mantém t */
+  }
+  t = t.trim().replace(/\u00a0/g, "");
+  const parts = t.split(".");
+  if (parts.length !== 3 || parts.some((p) => !p.length)) return null;
+  return t;
+}
+
 const NovaSenha = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const token = searchParams.get("token");
+
+  const token = useMemo(
+    () => readResetJwtFromSearchParams(searchParams),
+    [searchParams]
+  );
 
   const [formData, setFormData] = useState({
     newPassword: "",
@@ -38,38 +59,43 @@ const NovaSenha = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const password = formData.newPassword;
+    const tokenToSend = readResetJwtFromSearchParams(searchParams);
+    if (!tokenToSend) {
+      toast.error("Token inválido ou ausente.");
+      return;
+    }
 
-  if (password !== formData.confirmPassword) {
-    return toast.error("As senhas não coincidem.");
-  }
+    const password = formData.newPassword;
 
-  // Verifica se tem no mínimo 6 caracteres, uma letra maiúscula e um número
-  const senhaForteRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-  if (!senhaForteRegex.test(password)) {
-    return toast.error("A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número.");
-  }
+    if (password !== formData.confirmPassword) {
+      return toast.error("As senhas não coincidem.");
+    }
 
-  try {
-    setLoading(true);
-    await axios.post(`${API_URL}/api/auth/reset-password`, {
-      token,
-      newPassword: password,
-    });
+    const senhaForteRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+    if (!senhaForteRegex.test(password)) {
+      return toast.error(
+        "A senha deve ter pelo menos 6 caracteres, uma letra maiúscula e um número."
+      );
+    }
 
-    toast.success("Senha redefinida com sucesso!");
-    navigate("/");
-  } catch (error) {
-    toast.error(error.response?.data?.message || "Erro ao redefinir senha.");
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+      await axios.post(`${API_URL}/api/auth/reset-password`, {
+        token: tokenToSend,
+        newPassword: password,
+      });
 
-
+      toast.success("Senha redefinida com sucesso!");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Erro ao redefinir senha.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AuthContainer>
