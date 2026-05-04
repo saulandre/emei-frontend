@@ -7,6 +7,10 @@ import { FiClock, FiUser, FiMail, FiMapPin, FiCalendar,  FiInfo, FiPhone , FiChe
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ptBR } from "date-fns/locale";
 import axios from 'axios';
+import {
+  OPCOES_TIPO_CAMISA,
+  precoTipoCamisa,
+} from "../../constants/camisaOptions";
 import HeaderMain from './Header'
 import PlanoGeralModal, { PlanoGeralLink } from '../PlanoGeralEMEI';
 import { FaWhatsapp } from "react-icons/fa";
@@ -368,6 +372,7 @@ const imagensEventos = {
     telefoneResponsavel: '',
     comissao: '',
     camisa: false,
+    tipoCamisa: '',
     tamanhoCamisa: '',
     cep: '',
     estado: '',
@@ -424,7 +429,14 @@ const imagensEventos = {
     0
   );
 
-  const total = valorEmeiComDesconto + totalExtras;
+  const temCamisa =
+    formData.camisa === true || formData.camisa === "true";
+  const valorCamisa =
+    temCamisa && formData.tipoCamisa
+      ? precoTipoCamisa(formData.tipoCamisa)
+      : 0;
+
+  const total = valorEmeiComDesconto + totalExtras + valorCamisa;
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -532,10 +544,17 @@ const imagensEventos = {
     }
   
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : formattedValue,
-    }));
+    setFormData((prev) => {
+      const next = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : formattedValue,
+      };
+      if (name === "camisa" && type === "checkbox" && !checked) {
+        next.tipoCamisa = "";
+        next.tamanhoCamisa = "";
+      }
+      return next;
+    });
   };
   
   const today = new Date();
@@ -566,7 +585,21 @@ const imagensEventos = {
     const dataNascimento = new Date(formData.dataNascimento);
     if (isNaN(dataNascimento.getTime())) {
       setErrors([{ message: "Data de nascimento inválida." }]);
+      setIsSubmitting(false);
       return;
+    }
+
+    if (temCamisa) {
+      if (!formData.tipoCamisa || !formData.tamanhoCamisa) {
+        setErrors([
+          {
+            message:
+              "Com camisa, é obrigatório selecionar o tipo e o tamanho da camisa.",
+          },
+        ]);
+        setIsSubmitting(false);
+        return;
+      }
     }
 
       const payload = {
@@ -579,6 +612,8 @@ const imagensEventos = {
         cep: formData.cep.replace(/\D/g, ''),
         id: formData.id,
         otherInstitution: formData.otherInstitution,
+        tipoCamisa: temCamisa ? formData.tipoCamisa : "",
+        tamanhoCamisa: temCamisa ? formData.tamanhoCamisa : "",
 /*         primeiraComejaca: formData.primeiraComejaca */
       };
 
@@ -834,7 +869,7 @@ const imagensEventos = {
                 </CheckboxContainer>
               </InputGroup> 
 
-               {formData.camisa && (
+               {(formData.camisa === true || formData.camisa === "true") && (
 <>
     <InputGroup>
       <InputLabel>Tipo da Camisa *</InputLabel>
@@ -844,8 +879,11 @@ const imagensEventos = {
         onChange={handleChange}
       >
         <option value="">Selecione</option>
-        <option value="branca">Camisa Branca | R$ 30.00</option>
-        <option value="preta">Camisa Preta | R$ 40.00</option>
+        {OPCOES_TIPO_CAMISA.map((op) => (
+          <option key={op.value} value={op.value}>
+            {op.label}
+          </option>
+        ))}
       </Select>
     </InputGroup>
                 
@@ -865,6 +903,14 @@ const imagensEventos = {
                     <option value="GG">GG</option>
                   </Select>
                 </InputGroup>
+                {formData.tipoCamisa ? (
+                  <InputGroup>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#444" }}>
+                      Valor da camisa no resumo:{" "}
+                      <strong>R$ {precoTipoCamisa(formData.tipoCamisa)},00</strong>
+                    </p>
+                  </InputGroup>
+                ) : null}
                 </>
               )}
 

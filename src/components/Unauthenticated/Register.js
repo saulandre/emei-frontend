@@ -336,7 +336,16 @@ const Register = () => {
         confirmPassword: '',
       });
     } catch (err) {
-      setError(err.response?.data?.error || err.message || 'Erro ao registrar usuário');
+      const d = err?.response?.data;
+      const serverMsg =
+        (typeof d?.error === "string" && d.error) ||
+        (typeof d?.message === "string" && d.message) ||
+        null;
+      setError(
+        serverMsg ||
+          (typeof err?.message === "string" && err.message) ||
+          "Não foi possível concluir o cadastro. Tente novamente."
+      );
       console.error('Erro de registro:', err);
     } finally {
       setLoading(false);

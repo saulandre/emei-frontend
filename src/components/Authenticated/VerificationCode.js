@@ -298,7 +298,12 @@ useEffect(() => {
       }
     } catch (error) {
       console.error('Erro ao solicitar um novo código:', error);
-      setError('Erro ao solicitar um novo código.');
+      const d = error?.response?.data;
+      setError(
+        (typeof d?.message === "string" && d.message) ||
+          (typeof d?.error === "string" && d.error) ||
+          "Não foi possível enviar o e-mail. Tente novamente."
+      );
     }
   };
 

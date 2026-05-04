@@ -7,6 +7,11 @@ import { FiClock, FiUser, FiMail, FiMapPin, FiCalendar, FiInfo, FiPhone , FiChev
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ptBR } from "date-fns/locale";
 import axios from 'axios';
+import {
+  OPCOES_TIPO_CAMISA,
+  normalizeTipoCamisaFromApi,
+  precoTipoCamisa,
+} from "../../constants/camisaOptions";
 import HeaderMain from './Header'
 import PlanoGeralModal, { PlanoGeralLink } from '../PlanoGeralEMEI';
 import { FaWhatsapp } from "react-icons/fa";
@@ -345,10 +350,12 @@ const Atualizar = () => {
         : null;
   
         // Preenche o formData com os dados recebidos
+        const row = response.data.data;
         setFormData(prev => ({
           ...prev,
-          ...response.data.data, // Agora estamos acessando o 'data' da resposta
+          ...row,
           dataNascimento: dataNascimentoFormatada,
+          tipoCamisa: normalizeTipoCamisaFromApi(row.tipoCamisa),
         }));
       } catch (error) {
       
@@ -445,10 +452,17 @@ const Atualizar = () => {
     }
   
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : formattedValue,
-    }));
+    setFormData((prev) => {
+      const next = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : formattedValue,
+      };
+      if (name === "camisa" && type === "checkbox" && !checked) {
+        next.tipoCamisa = "";
+        next.tamanhoCamisa = "";
+      }
+      return next;
+    });
   };
   
   const today = new Date();
@@ -481,6 +495,21 @@ const Atualizar = () => {
         setIsSubmitting(false);
         return;
       }
+
+      const querCamisa =
+        formData.camisa === true || formData.camisa === "true";
+      if (querCamisa) {
+        if (!formData.tipoCamisa || !formData.tamanhoCamisa) {
+          setErrors([
+            {
+              message:
+                "Com camisa, é obrigatório selecionar o tipo e o tamanho da camisa.",
+            },
+          ]);
+          setIsSubmitting(false);
+          return;
+        }
+      }
   
       const payload = {
         id: formData.id,
@@ -504,9 +533,9 @@ const Atualizar = () => {
         numero: formData.numero || "",
         complemento: formData.complemento || "",
         vegetariano: formData.vegetariano || false,
-        camisa: formData.camisa === "true" || formData.camisa === true,
-        tamanhoCamisa: formData.tamanhoCamisa || "",
-        tipoCamisa: formData.tipoCamisa || "",
+        camisa: querCamisa,
+        tamanhoCamisa: querCamisa ? formData.tamanhoCamisa || "" : "",
+        tipoCamisa: querCamisa ? formData.tipoCamisa || "" : "",
         primeiraComejaca: formData.primeiraComejaca || false,
         deficienciaAuditiva: formData.deficienciaAuditiva || false,
         deficienciaAutismo: formData.deficienciaAutismo || false,
@@ -768,14 +797,16 @@ const Atualizar = () => {
                   <CheckboxInput
                     type="checkbox"
                     name="camisa"
-                    checked={formData.camisa}
+                    checked={
+                      formData.camisa === true || formData.camisa === "true"
+                    }
                     onChange={handleChange}
                   />
                   <CheckboxLabel>Sim, desejo comprar a camisa.</CheckboxLabel>
                 </CheckboxContainer>
               </InputGroup>
 
-              {formData.camisa && (
+              {(formData.camisa === true || formData.camisa === "true") && (
 <>
     <InputGroup>
       <InputLabel>Tipo da Camisa *</InputLabel>
@@ -785,8 +816,11 @@ const Atualizar = () => {
         onChange={handleChange}
       >
         <option value="">Selecione</option>
-        <option value="branca">Camisa Branca | R$ 30.00</option>
-        <option value="preta">Camisa Preta | R$ 40.00</option>
+        {OPCOES_TIPO_CAMISA.map((op) => (
+          <option key={op.value} value={op.value}>
+            {op.label}
+          </option>
+        ))}
       </Select>
     </InputGroup>
                 
@@ -806,6 +840,14 @@ const Atualizar = () => {
                     <option value="GG">GG</option>
                   </Select>
                 </InputGroup>
+                {formData.tipoCamisa ? (
+                  <InputGroup>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#444" }}>
+                      Valor da camisa:{" "}
+                      <strong>R$ {precoTipoCamisa(formData.tipoCamisa)},00</strong>
+                    </p>
+                  </InputGroup>
+                ) : null}
                 </>
               )}
 

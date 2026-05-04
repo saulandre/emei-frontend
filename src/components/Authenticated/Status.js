@@ -50,8 +50,8 @@ const ListaParticipantes = () => {
     if (idade <= 14) return "Semente de Amor";
     if (idade <= 17) return "Flores de Amor";
     if (idade <= 20) return "Colheita de Amor";
-    if (idade <= 26) return "Tafereiros do Bem";
-    return "Pais";
+    if (idade <= 26) return "20 a 26 anos";
+    return "27 anos ou mais";
   };
   const handleStatusChange = async (participanteId, novoStatus) => {
     try {

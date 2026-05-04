@@ -109,6 +109,9 @@ const ErrorBanner = styled.p`
   text-align: center;
 `;
 
+const FORGOT_PASSWORD_SAFE_FALLBACK =
+  "Não foi possível enviar o e-mail. Tente novamente.";
+
 function getForgotPasswordErrorMessage(error) {
   const data = error?.response?.data;
   if (typeof data === "string" && data.trim()) return data;
@@ -120,7 +123,7 @@ function getForgotPasswordErrorMessage(error) {
   if (typeof error?.message === "string" && error.message.trim()) {
     return error.message;
   }
-  return "Não foi possível enviar o e-mail de recuperação.";
+  return FORGOT_PASSWORD_SAFE_FALLBACK;
 }
 
 const ForgotPassword = () => {

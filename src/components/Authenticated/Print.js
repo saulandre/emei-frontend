@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import { textoResumoCamisa } from "../../constants/camisaOptions";
 
 import { jsPDF } from "jspdf"; 
 
@@ -467,7 +468,13 @@ const getToken = () => {
 </FieldRow>
             <FieldRow>
               <FieldLabel>Camisa</FieldLabel>
-              <FieldValue>{participant.camisa ? `Sim (Tamanho: ${participant.tamanhoCamisa})` : "Não"}</FieldValue>
+              <FieldValue>
+                {textoResumoCamisa(
+                  participant.camisa,
+                  participant.tipoCamisa,
+                  participant.tamanhoCamisa
+                )}
+              </FieldValue>
             </FieldRow>
           </ResponsiveGrid>
         </Section>
