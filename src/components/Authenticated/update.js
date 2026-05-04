@@ -8,6 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ptBR } from "date-fns/locale";
 import axios from 'axios';
 import HeaderMain from './Header'
+import PlanoGeralModal, { PlanoGeralLink } from '../PlanoGeralEMEI';
 import { FaWhatsapp } from "react-icons/fa";
 
 const Container = styled.div`
@@ -272,6 +273,14 @@ const SubmitButton = styled.button`
     to { transform: rotate(360deg); }
   }
 `;
+
+const PlanoGeralHint = styled.p`
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 1.25rem;
+  line-height: 1.55;
+`;
+
 const Atualizar = () => {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
@@ -358,6 +367,7 @@ const Atualizar = () => {
   const [institutions, setInstitutions] = useState([]);
   const [isMinor, setIsMinor] = useState(false);
   const [theme, setTheme] = useState(themes.professional);
+  const [planoModalOpen, setPlanoModalOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -1126,7 +1136,29 @@ mental, emocional?"
 
                 </CheckboxLabel>
               </CheckboxContainer> */}
-              
+
+            <PlanoGeralHint>
+              Consulte o{" "}
+              <PlanoGeralLink
+                role="button"
+                tabIndex={0}
+                onClick={() => setPlanoModalOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setPlanoModalOpen(true);
+                  }
+                }}
+              >
+                plano geral e informações do evento
+              </PlanoGeralLink>
+              .
+            </PlanoGeralHint>
+            <PlanoGeralModal
+              isOpen={planoModalOpen}
+              onClose={() => setPlanoModalOpen(false)}
+            />
+
             <SubmitButton type="submit" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>

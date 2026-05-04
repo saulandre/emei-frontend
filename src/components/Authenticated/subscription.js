@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import  styled, { ThemeProvider, keyframes } from "styled-components";
+import  styled, { ThemeProvider } from "styled-components";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { FiClock, FiUser, FiMail, FiMapPin, FiCalendar,  FiInfo, FiPhone , FiChevronLeft, FiFileText, FiShoppingBag, FiLoader } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ptBR } from "date-fns/locale";
 import axios from 'axios';
 import HeaderMain from './Header'
+import PlanoGeralModal, { PlanoGeralLink } from '../PlanoGeralEMEI';
 import { FaWhatsapp } from "react-icons/fa";
 import { FaStar } from 'react-icons/fa';
 const Container = styled.div`
@@ -308,56 +309,12 @@ const VoltarButton = styled.button`
   }
 `;
 
-// ANIMAÇÃO DE ENTRADA
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-`;
 const FixedLabel = styled.div`
   margin-bottom: 10px;
   font-weight: bold;
   color: #4b0082;
 `;
 
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
-  
-  align-items: center;
-  justify-content: center;
-
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  @media (max-width: 768px) {
-    align-items: flex-start;
-    justify-content: flex-start;
-width: 100%
-
-  }
-`;
 const ListaDetalhes = styled.ul`
   margin-left: 20px;
   padding-left: 10px;
@@ -389,241 +346,6 @@ const CheckboxWrapperList = styled.label`
     margin-right: 10px;
   }
 `;
-const ModalContent = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
- width: 100%;
-  height:80vh;
-  margin: 32px;
-  position: relative;
-  animation: ${({ isVisible }) => (isVisible ? fadeIn : fadeOut)} 0.3s ease forwards;
-  overflow-y: auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem; // espaçamento entre seções principais
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-
-  h4 {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    margin: 0.5rem 0;
-    line-height: 1.6;
-  }
-
-  ul {
-    margin: 0.5rem 0 1rem 1.5rem;
-    padding-left: 1rem;
-    list-style-type: disc;
-  }
-
-  ul li {
-    margin-bottom: 0.5rem;
-  }
-
-  blockquote {
-    background: #f5f5f5;
-    border-left: 4px solid #ccc;
-    padding: 1rem;
-    margin: 1rem 0;
-    font-style: italic;
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  @media (max-width: 768px) {
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    border-radius: 0;
-    padding: 1rem;
-    margin: 0;
-  }
-
-`;
-const ModalTitle = styled.h2`
-  text-align: center;
-  margin: 0;
-  padding: 0;
-`;
-
-const ModalSubtitle = styled.h3`
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-`;
-
-// BOTÃO DE FECHAR
-const CloseButton = styled.button`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #ccc;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-
-`;
-const LinkText = styled.span`
-  color: blue;
-  text-decoration: underline;
-  cursor: pointer;
-`;
-
-
-
-const PlanoGeralModal = ({ isOpen, onClose }) => {
-  const [visible, setVisible] = useState(isOpen);
-
-  React.useEffect(() => {
-    if (isOpen) {
-      setVisible(true);
-    } else {
-      const timeout = setTimeout(() => setVisible(false), 300); // tempo da animação
-      return () => clearTimeout(timeout);
-    }
-  }, [isOpen]);
-
-  return (
-  <ModalOverlay isVisible={visible}>
-      {visible && (
- <ModalContent isVisible={isOpen}>
- <CloseButton onClick={onClose}>✖</CloseButton>
-
- <ModalTitle>23º CONSELHO ESPÍRITA DE UNIFICAÇÃO - 23º CEU</ModalTitle>
-<ModalSubtitle>ÁREA DA EDUCAÇÃO ESPÍRITA</ModalSubtitle>
-<ModalSubtitle>SERVIÇO DE EVANGELIZAÇÃO DA FAMÍLIA - SEF</ModalSubtitle>
-<ModalSubtitle>ENCONTRO DE MOCIDADES ESPÍRITAS EM IRAJÁ - EMEI</ModalSubtitle>
-
-
-<section>
-  <h3>1. Dados de Identificação</h3>
-  <p><strong>1.1 Evento:</strong> Encontro de Mocidades Espíritas em Irajá - EMEI.</p>
-  <p><strong>1.2 Promoção:</strong> Área da Educação Espírita do 23º CEU / CEERJ.</p>
-  <p><strong>1.3 Execução:</strong> Coordenação Geral.</p>
-  <p><strong>1.4 Período:</strong> 2 de agosto de 2025.</p>
-  <p><strong>1.5 Local:</strong> Centro Espírita A Caminho da Luz.</p>
-
-  <p><strong>1.6 Público-Alvo:</strong></p>
-  <ul>
-    <li><strong>Confraternistas:</strong> Jovens espíritas de 11 a 21 anos completos até a data do evento, <b>que estejam frequentando as reuniões do Setor de Juventude</b> de uma Instituição Espírita há pelo menos 1 ano até a data da inscrição, com 70% de presença.</li>
-
-    <li><strong>Tarefeiros do Bem:</strong> Espíritas de 22 a 26 anos completos até a data do evento, vinculados ao Setor de Juventude ou a outro setor de uma Instituição Espírita há no mínimo 1 ano, com 70% de frequência. Este grupo, além das atividades de estudo, poderá participar de atividades nas Equipes, como estágio e trabalho voluntário.</li>
-
-    <li><strong>Membros de Equipe:</strong> Espíritas a partir de 18 anos, até a data do evento, que estejam participando ativamente há pelo menos 1 ano de uma Instituição Espírita. Ao se inscrever, o participante deve listar as tarefas que tem habilidade para desempenhar, colocando-se à disposição da Coordenação Geral para atuação em alguma equipe. Para participar da Equipe de Estudos, é necessário estar atuando como evangelizador de algum Ciclo de Juventude ou da Infância (no caso de evangelizar os Pequenos Companheiros).</li>
-
-    <li><strong>Pequenos Companheiros:</strong> Filhos de Membros de Equipe, de 2 a 10 anos de idade na data do evento, poderão participar da programação previamente elaborada em consonância com o tema central.</li>
-
-    <li><strong>Demais CEUs/CEERJ:</strong> Serão aceitas inscrições de outros CEUs, desde que atendam a todos os critérios estabelecidos para Confraternistas, Tarefeiros do Bem, Pais e Membros de Equipe. A ficha de inscrição deve ser assinada pelo presidente da Instituição Espírita à qual pertençam.</li>
-  </ul>
-</section>
-
-
- <section>
-   <h3>2. Objetivo</h3>
-  <p><strong> 2.1	Oferecer aos participantes condições que os levem:</strong></p>
-   <ul>
-     <li>À valorização do estudo sistemático da Doutrina Espírita.</li>
-     <li>À sensibilização para a vivência dos ensinamentos cristãos, consigo mesmo, perante a família, a Instituição Espírita e a sociedade.</li>
-     <li>Fortalecer a unificação do Movimento Espírita local.</li>
-   </ul>
- <p><strong>  2.2	Intensificar a Unificação do Movimento Espírita da região.</strong></p>
- </section>
-
- <section>
-   <h3>3. Metodologias de Ação</h3>
-   <ul>
-     <li>REUNIÕES DE ESTUDO</li>
-     <li>ATIVIDADES COMPLEMENTARES</li>
-     <li>ATIVIDADES DE DESENVOLVIMENTO INTERPESSOAL</li>
-   </ul>
- </section>
-
- <section>
-   <h3>4. Tema Central</h3>
-   <blockquote>
-     <p><strong>Mediunidade: Entre Dimenções</strong></p>
-     </blockquote>
- </section>
-
- <section>
-   <h3>5. Inscrições</h3>
-
-   <p><strong>5.1 PERÍODO DE INSCRIÇÃO:</strong> 25/05/2025 a 10/07/2025 (Podendo sofrer alterações no decorrer do prazo em virtude da limitação máxima).</p> 
-    
-   <h4>5.2 Investimento</h4>
-   <ul>
-     <li>R$ 35,00 (Até 30/06/2025 - Após R$ 40,00) — Confraternistas, Tarefeiros, Pais e Membros de Equipe</li>
-     <li>R$ 20,00 — Pequenos Companheiros</li>
-     <li>R$ 30,00 — Camisa com o tema do evento (Opcional)</li>
-   </ul>
-   <p><em>Observação 1:</em> Este investimento destina-se às despesas de alimentação, material do estudo, material de limpeza e a materiais diversos necessários para a realização da Comejaca.
-
-</p>
-   <p><em>Observação 2:</em>  Todos deverão contribuir com a importância acima mencionada até a data limite da inscrição, e qualquer dificuldade deverá ser resolvida pela Instituição Espírita da qual o participante participe, que então repassará para a Coordenação Geral, através de um comunicado por escrito.</p>
-
-   <h4>5.5 DA CONTRIBUIÇÃO:</h4>
-   <p>PIX (E-mail): polo20_genesare@comeerj.com.br ou através da Agência: 3836-9 (Mangaratiba) e Conta Poupança: 200.020-2 (Variação 51)
-, Banco do Brasil (341). Favorecido: Conselho Espírita do Est. Rio de Janeiro. O comprovante deverá ser enviado por e-mail: emeiiraja23@gmail.com ou pelo site de Inscrição com a informação dos beneficiários deste pagamento. O pagamento deverá ser feito até o dia 10/07/2025.</p>
-
-   <h4>5.6 NÃO SERÃO ACEITAS INSCRIÇÕES APÓS O DIA 10/07/2025, E NEM SERÃO FEITAS INSCRIÇÕES NO LOCAL DO EVENTO. </h4>
-  
-   <h4>5.7 A INSCRIÇÃO É PESSOAL E INTRANSFERÍVEL, NÃO SENDO PERMITIDAS SUBSTITUIÇÕES. </h4>
-
-   <h4>5.8 CONFIRMAÇÃO: </h4>
-
-   <p><strong>5.8.1	CONFIRMAÇÃO: Confraternistas, Tarefeiros do Bem, Peq. Companheiros e Pais:</strong> Através de comunicação da Coordenação Geral diretamente para os participantes via e-mail.
-</p>
-
-<p><strong>	5.8.2	Membros de Equipe:</strong> Através da participação nas Reuniões Gerais e nas reuniões de Equipe.
-</p>
-<p><em>Observação 1:</em> Procurar saber as datas das reuniões das equipes e cuidar de frequentá-las assiduamente (mínimo 70%), garantindo assim o seu direito de participar da CONMEL.
-
-</p>
-<p style={{ textAlign: 'center', marginTop: '2rem' }}>
-  <a href="#" onClick={onClose}  style={{
-    display: 'inline-block',
-    textDecoration: 'none',
-    color: '#d64042',
-    cursor: 'pointer',
-    fontWeight: '500',
-    marginBottom: '2rem',
-    textAlign: 'center',
-    width: '100%',
-  }}
->
-    Voltar
-  </a>
-</p>
- </section>
-</ModalContent>
-
-
-  
-      )}
-    </ModalOverlay>
-  );
-};
-
 const Formulario = () => {
 const imagensEventos = {
   comejaca: 'https://via.placeholder.com/500x300?text=COMEJACA', // substitua pelo real
@@ -1528,7 +1250,7 @@ mental, emocional?"
         <CheckboxContainer>
         <CheckboxInput type="checkbox" required />
         <CheckboxLabel>
-          Declaro que li e aceito as orientações contidas no <LinkText onClick={() => setModalOpen(true)}>plano geral</LinkText> da 39º EMEI. *
+          Declaro que li e aceito as orientações contidas no <PlanoGeralLink onClick={() => setModalOpen(true)}>plano geral</PlanoGeralLink> do EMEI. *
         </CheckboxLabel>
       </CheckboxContainer> 
 

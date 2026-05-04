@@ -259,7 +259,7 @@ function renderCard() {
         <CardDescription>Pequenos Companheiros</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 20,00</CardDescription>
+        <CardDescription>R$ 50,00</CardDescription>
       </td>
     </tr>
    
@@ -417,7 +417,7 @@ function renderCard() {
         <CardDescription>Pequenos Companheiros</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 20,00</CardDescription>
+        <CardDescription>R$ 50,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
@@ -597,7 +597,7 @@ function renderCard() {
         <CardDescription>Inscrição</CardDescription>
       </td>
       <td style={cellStyleRight}>
-        <CardDescription>R$ 40,00</CardDescription>
+        <CardDescription>R$ 65,00</CardDescription>
       </td>
     </tr>
     <tr style={{ backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
