@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -80,19 +80,56 @@ const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-height: 50px;
+  height: 50px;
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
 `;
 
+const SuccessBanner = styled.p`
+  margin-top: 1rem;
+  padding: 12px;
+  background: #e8f5e9;
+  color: #1b5e20;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-align: center;
+`;
+
+const ErrorBanner = styled.p`
+  margin-top: 1rem;
+  padding: 12px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
+`;
+
+function getForgotPasswordErrorMessage(error) {
+  const data = error?.response?.data;
+  if (typeof data === "string" && data.trim()) return data;
+  if (data && typeof data === "object") {
+    const m =
+      data.message ?? data.error ?? data.msg ?? data.detail;
+    if (typeof m === "string" && m.trim()) return m;
+  }
+  if (typeof error?.message === "string" && error.message.trim()) {
+    return error.message;
+  }
+  return "Não foi possível enviar o e-mail de recuperação.";
+}
+
 const ForgotPassword = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "" });
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [countdown, setCountdown] = useState(30);
+  const [successInfo, setSuccessInfo] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
@@ -116,24 +153,32 @@ const ForgotPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setSubmitError(null);
+    setSuccessInfo(false);
+
+    const email = (formData.email || "").trim();
+    console.log("Forgot password submit:", email);
 
     try {
-      await axios.post(`${API_URL}/api/auth/forgot-password`, formData);
-      setDisabled(true);
-
-      // Mostra notificação antes do redirecionamento
-      toast.success("E-mail enviado.", {
-        position: "bottom-center",
-        autoClose: 4000,
+      const response = await axios.post(`${API_URL}/api/auth/forgot-password`, {
+        email,
       });
+      console.log("Forgot password response:", response?.data);
 
-      // Redireciona após o toast ser exibido
-      setTimeout(() => navigate("/"), 4200);
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Erro ao conectar com o servidor.",
-        { position: "top-center" }
+      setDisabled(true);
+      setSuccessInfo(true);
+
+      toast.success(
+        "Se o e-mail estiver cadastrado, enviaremos as instruções de redefinição.",
+        {
+          position: "bottom-center",
+          autoClose: 5000,
+        }
       );
+    } catch (error) {
+      const msg = getForgotPasswordErrorMessage(error);
+      setSubmitError(msg);
+      toast.error(msg, { position: "top-center" });
     } finally {
       setLoading(false);
     }
@@ -168,6 +213,13 @@ const ForgotPassword = () => {
             )}
           </StyledButton>
         </form>
+        {successInfo && (
+          <SuccessBanner>
+            Se o e-mail estiver cadastrado, enviaremos as instruções de
+            redefinição.
+          </SuccessBanner>
+        )}
+        {submitError && <ErrorBanner>{submitError}</ErrorBanner>}
         <LinkVoltar>
           <Link to="/">
             <FontAwesomeIcon icon={faArrowLeft} /> Voltar para o login
