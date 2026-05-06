@@ -5,6 +5,7 @@ import GraficoTrabalhadoresPorComissao from "./GraficoTrabalhadoresPorComissao";
 const ListaParticipantes = () => {
   const [participantes, setParticipantes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [erroApi, setErroApi] = useState(null);
   const [filtroIE, setFiltroIE] = useState("");
   const [abaAtiva, setAbaAtiva] = useState("lista"); // 'lista', 'trabalhadores', 'instituicoes'
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
@@ -12,6 +13,7 @@ const ListaParticipantes = () => {
   useEffect(() => {
     const fetchParticipantes = async () => {
       try {
+        setErroApi(null);
         const response = await axios.get(`${API_URL}/api/auth/pagamentos/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -19,9 +21,16 @@ const ListaParticipantes = () => {
         });
         if (response.data.success) {
           setParticipantes(response.data.data);
+        } else {
+          setErroApi("Resposta da API inválida (success=false).");
         }
       } catch (error) {
         console.error("Erro ao buscar participantes:", error);
+        setErroApi(
+          error?.response?.data?.error ||
+            error?.response?.data?.message ||
+            "Falha ao consultar /api/auth/pagamentos. Verifique se o backend está rodando e se o token é válido."
+        );
       } finally {
         setLoading(false);
       }
@@ -161,6 +170,12 @@ const listaGFE = useMemo(() => {
           <Header>
             <Title>GESTÃO DE INSCRITOS</Title>
           </Header>
+
+          {erroApi ? (
+            <p style={{ color: "#b91c1c", marginTop: "0.75rem" }}>
+              {erroApi}
+            </p>
+          ) : null}
 
       
 

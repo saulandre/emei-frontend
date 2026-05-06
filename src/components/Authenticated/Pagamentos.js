@@ -663,7 +663,7 @@ function renderCard() {
 
 
 
-        <QRImage src="/qrcode70.png" alt="QR Code Inscrição com Camisa" />
+        <QRImage src="/PARTICIPANTES INSCRIÇÃO CAMISA ALGODAO.png" alt="QR Code Inscrição com Camisa" />
                         <CardDescription style={{color: '#000'}}>ou</CardDescription>
 
                 <Label>PIX Copia e Cola</Label>
