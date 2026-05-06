@@ -896,7 +896,6 @@ const imagensEventos = {
                     
                   >
                     <option value="">Selecione</option>
-                    <option value="PP">PP</option>
                     <option value="P">P</option>
                     <option value="M">M</option>
                     <option value="G">G</option>

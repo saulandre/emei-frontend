@@ -375,7 +375,7 @@ export function PlanoGeralEMEIContent() {
           </InvestimentoLine>
           <InvestimentoLine>R$ 50,00 — Pequenos Companheiros</InvestimentoLine>
           <InvestimentoLine>
-            R$ ******00 — Camisa com o tema do evento (Opcional)
+            R$ 35,00 (poliester) ou 50,00 (algodão) — Camisa com o tema do evento (Opcional)
           </InvestimentoLine>
         </InvestimentoBox>
         <Paragraph>
