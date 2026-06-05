@@ -323,14 +323,7 @@ const Login = () => {
     }));
   };
 
-  useEffect(() => {
-    const emailPreenchido = formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
-    const senhaPreenchida = formData.password && formData.password.length > 0;
-  
-    if (emailPreenchido && senhaPreenchida) {
-      handleSubmit();
-    }
-  }, [formData.email, formData.password]);
+
   
   const handleSubmit = async (e) => {
     e?.preventDefault();
