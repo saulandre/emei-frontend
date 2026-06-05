@@ -323,16 +323,27 @@ const Login = () => {
     }));
   };
 
- 
+  useEffect(() => {
+    const emailPreenchido = formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+    const senhaPreenchida = formData.password && formData.password.length > 0;
   
-  const handleSubmit = async () => {
+    if (emailPreenchido && senhaPreenchida) {
+      handleSubmit();
+    }
+  }, [formData.email, formData.password]);
+  
+  const handleSubmit = async (e) => {
+    e?.preventDefault();
   
     try {
       setLoading(true);
       setError(null);
       localStorage.clear();
   
-      const response = await axios.post(`${API_URL}/api/auth/entrar`, formData);
+      const response = await axios.post(
+        `${API_URL}/api/auth/entrar`,
+        formData
+      );
   
       const { token, user } = response.data;
   
@@ -343,19 +354,34 @@ const Login = () => {
       localStorage.setItem('role', user.role);
       localStorage.setItem('nome', user.name);
       localStorage.setItem('email', user.email);
-      const expirationDate = new Date();
-      expirationDate.setDate(expirationDate.getDate() + (formData.rememberMe ? 30 : 7));
-      localStorage.setItem('tokenExpiration', expirationDate.toISOString());
   
-      const redirectPath = user.isVerified ? '/painel' : '/verificar';
+      const expirationDate = new Date();
+      expirationDate.setDate(
+        expirationDate.getDate() +
+          (formData.rememberMe ? 30 : 7)
+      );
+  
+      localStorage.setItem(
+        'tokenExpiration',
+        expirationDate.toISOString()
+      );
+  
+      const redirectPath = user.isVerified
+        ? '/painel'
+        : '/verificar';
+  
       navigate(redirectPath);
     } catch (err) {
-      console.error("❌ Erro no login automático:", err);
+      console.error("❌ Erro no login:", err);
+  
       if (err.response) {
         if (err.response.status === 401) {
           setError('Usuário ou senha incorretos.');
         } else {
-          setError(err.response.data.message || 'Erro inesperado. Tente novamente.');
+          setError(
+            err.response.data.message ||
+            'Erro inesperado. Tente novamente.'
+          );
         }
       } else {
         setError('Erro de rede ou servidor.');
