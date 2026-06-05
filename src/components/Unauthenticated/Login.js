@@ -145,6 +145,10 @@ const Button = styled.button`
     cursor: not-allowed;
     opacity: 0.7;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -221,12 +225,8 @@ const FloatingButton = styled.button`
     border: none;
     border-radius: 0;
     cursor: pointer;
+    color: white;
     background: linear-gradient(135deg, #6599ff, #6599ff, #6599ff);
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
   }
 `;
 
