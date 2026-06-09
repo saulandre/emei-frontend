@@ -222,6 +222,7 @@ const FloatingButton = styled.button`
     padding: 1.2rem;
     font-size: 1rem;
     font-weight: 500;
+    margin-bottom: 50px;
     border: none;
     border-radius: 0;
     cursor: pointer;
@@ -237,13 +238,13 @@ const LoadingSpinner = styled.div`
     }
   }
 
-  width: 24px;
-  height: 24px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
 `;
 
 const Login = () => {
