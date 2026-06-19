@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import styled, { ThemeProvider } from 'styled-components';
 import { FiUser, FiLogOut, FiMoon,FiDownload, FiMenu, FiPlus, FiUpload } from "react-icons/fi";
+import {
+  dashboardInscricaoAberta,
+  MENSAGEM_INSCRICOES_FINALIZADAS,
+} from '../../constants/emeiConfig';
 
 // Temas otimizados
 export const themes = {
@@ -187,6 +191,21 @@ const Button = styled.button`
   }
 `;
 
+const InscricaoFechadaButton = styled(Button)`
+  background: #6c757d;
+  cursor: default;
+  pointer-events: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+
+    &::after {
+      opacity: 0;
+    }
+  }
+`;
+
 
 
 const FloatingActions = styled.div`
@@ -289,6 +308,24 @@ const HeaderMain = ({className }) => {
     setTheme(savedTheme === "professional" ? themes.professional : themes.minimalista);
   }, []);
   const estaNaHomeOuRegistrar = pathname === '/' || pathname === '/registrar' || pathname === '/recuperarsenha' || pathname === '/verificar';
+  const inscricaoFechadaNoDashboard = pathname === '/painel' && !dashboardInscricaoAberta;
+
+  const renderBotaoInscrever = (onNavigate) => {
+    if (inscricaoFechadaNoDashboard) {
+      return (
+        <InscricaoFechadaButton type="button" aria-disabled="true">
+          {MENSAGEM_INSCRICOES_FINALIZADAS}
+        </InscricaoFechadaButton>
+      );
+    }
+
+    return (
+      <Button onClick={onNavigate}>
+        <FiPlus size={20} /> Inscrever
+      </Button>
+    );
+  };
+
   return (
     <ThemeProvider theme={theme}>
       
@@ -308,11 +345,8 @@ const HeaderMain = ({className }) => {
             </Button>
           )}
 
-          {pathname !== '/inscrever' && (
-            <Button onClick={() => navigate('/inscrever')}>
-              <FiPlus size={20} /> Inscrever
-            </Button>
-          )}
+          {pathname !== '/inscrever' &&
+            renderBotaoInscrever(() => navigate('/inscrever'))}
 
           {pathname !== '/perfil' && (
             <Button onClick={() => navigate('/perfil')}>
@@ -357,12 +391,11 @@ const HeaderMain = ({className }) => {
             <FiPlus size={20} /> Home
           </Button>
             )}
-  {pathname !== '/inscrever' && (
-
-          <Button onClick={() => { navigate('/inscrever'); setIsMenuOpen(false) }}>
-            <FiPlus size={20} /> Inscrever
-          </Button>
-             )}
+  {pathname !== '/inscrever' &&
+            renderBotaoInscrever(() => {
+              navigate('/inscrever');
+              setIsMenuOpen(false);
+            })}
            
 
   {pathname !== '/perfil' && (

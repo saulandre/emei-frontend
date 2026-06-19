@@ -17,6 +17,10 @@ import {
 } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {
+  dashboardInscricaoAberta,
+  MENSAGEM_INSCRICOES_FINALIZADAS,
+} from '../../constants/emeiConfig';
 
 const LoadingSpinner = styled.div`
   @keyframes spin {
@@ -327,6 +331,22 @@ const MobileOnlyButton = styled.button`
     }
   }
 `;
+
+const InscricaoFechadaMessage = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: default;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+`;
 const StatusPill = styled.span`
   display: inline-flex;
   align-items: center;
@@ -510,9 +530,15 @@ useEffect(() => {
       <Container>
 
        <br></br><br></br>
-     <MobileOnlyButton onClick={handleInscrever}>
-        Inscrever
-      </MobileOnlyButton>
+     {dashboardInscricaoAberta ? (
+        <MobileOnlyButton onClick={handleInscrever}>
+          Inscrever
+        </MobileOnlyButton>
+      ) : (
+        <InscricaoFechadaMessage>
+          {MENSAGEM_INSCRICOES_FINALIZADAS}
+        </InscricaoFechadaMessage>
+      )}
         <ContentWrapper>
           <FormCard>
    
